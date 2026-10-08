@@ -1,0 +1,580 @@
+%% Full target ERD: assets-erd_1 (existing) + entities and fields identified as missing
+%% in the gap analysis. New entities are styled "newEnt"; new fields on existing
+%% entities carry a comment starting with "NEW".
+erDiagram
+
+  %% ---------------- Existing relationships (assets-erd_1) ----------------
+  Organization ||--o| AssetSequence : "numbers assets"
+  Organization |o--o{ AssetType : "owns (NULL = built-in)"
+  Organization ||--o{ Site : "has"
+  Organization ||--o{ Asset : "owns"
+  Organization ||--o{ AssetManagerGrant : "grants"
+  Organization ||--o{ SavedAssetFilter : "scopes"
+  User ||--o{ SavedAssetFilter : "saves"
+  User ||--o{ AssetManagerGrant : "holds"
+  AssetType |o--o{ AssetType : "forked_from"
+  AssetType ||--o{ Asset : "PROTECT - shapes"
+  Site |o--o{ Asset : "current_site (SET_NULL)"
+  Project |o--o{ Asset : "project (SET_NULL)"
+  Asset |o--o{ Asset : "parent (SET_NULL)"
+  User |o--o{ Asset : "assigned_to (primary holder cache)"
+  Asset ||--o| AssetImage : "photo"
+  Asset ||--o{ AssetInvoice : "invoices (NEW: was 1:1)"
+  Asset ||--o{ AssetAssignment : "assignments"
+  User ||--o{ AssetAssignment : "assignee"
+  Task |o--o{ AssetAssignment : "for task"
+  Asset ||--o{ MaintenanceLog : "maintenance_logs"
+  Asset ||--o{ StockMovement : "stock ledger"
+  StockMovement |o--o{ AssetAssignment : "movement / returned_movement"
+  Asset ||--o{ Bom : "board / product"
+  Bom ||--o{ BomLine : "lines"
+  Asset ||--o{ BomLine : "component (PROTECT)"
+  BomLine ||--o{ BomLineAlternate : "alternates"
+  Asset ||--o{ BomLineAlternate : "substitute (PROTECT)"
+  Bom ||--o{ BomBuild : "builds"
+  BomBuild |o--o{ StockMovement : "consumes via"
+  Project |o--o{ StockMovement : "consumed for"
+  Project |o--o{ BomBuild : "built for"
+  Task |o--o{ StockMovement : "task"
+  Task |o--o{ BomBuild : "task"
+
+  %% ---------------- New relationships: P1 stock layer ----------------
+  Site ||--o{ Location : "bins / shelves"
+  Location |o--o{ Location : "parent"
+  Location |o--o{ Asset : "stored at (NEW)"
+  Location ||--o{ StockMovement : "at location (NEW)"
+  Asset ||--o{ StockBalance : "on hand per place"
+  Location ||--o{ StockBalance : "holds"
+  Lot |o--o{ StockBalance : "of lot"
+  Asset ||--o{ Lot : "batches"
+  Lot |o--o{ StockMovement : "lot (NEW)"
+  Organization ||--o{ StockTransfer : "transfers"
+  Site ||--o{ StockTransfer : "from / to"
+  StockTransfer ||--|{ StockTransferLine : "lines"
+  Asset ||--o{ StockTransferLine : "moves"
+  StockTransfer |o--o{ StockMovement : "posts 2 legs (NEW)"
+  Site ||--o{ StockCount : "counted"
+  Location |o--o{ StockCount : "scope"
+  StockCount ||--|{ StockCountLine : "lines"
+  Asset ||--o{ StockCountLine : "counted item"
+  StockCountLine |o--o| StockMovement : "variance adjust"
+  Organization ||--o{ Party : "vendors, makers, customers"
+  Party |o--o{ Asset : "vendor (NEW)"
+  Party |o--o{ AssetInvoice : "vendor (NEW)"
+  Party |o--o{ Lot : "supplied by"
+
+  %% ---------------- New relationships: P2 lifecycle ----------------
+  AssetType ||--o{ AssetModel : "models"
+  Party |o--o{ AssetModel : "manufacturer"
+  AssetModel |o--o{ Asset : "instance of (NEW)"
+  Asset ||--o| DepreciationSchedule : "depreciates"
+  DepreciationSchedule ||--o{ DepreciationEntry : "periods"
+  Asset ||--o| Disposal : "retired by"
+  Party |o--o{ Disposal : "buyer"
+  Party |o--o{ Contract : "vendor"
+  Contract ||--o{ ContractAsset : "covers"
+  Asset ||--o{ ContractAsset : "covered by"
+  Asset ||--o{ Reservation : "booked"
+  User ||--o{ Reservation : "reserved for"
+  Project |o--o{ Reservation : "for project"
+  Asset |o--o{ MaintenancePlan : "plans"
+  AssetType |o--o{ MaintenancePlan : "plans per type"
+  MaintenancePlan |o--o{ MaintenanceLog : "generates (NEW)"
+  Asset ||--o{ Attachment : "documents"
+  MaintenanceLog ||--o{ Attachment : "reports"
+  Contract ||--o{ Attachment : "contract files"
+  User ||--o{ ActivityLog : "actor"
+  Asset ||--o{ ActivityLog : "history"
+  Organization ||--o{ Department : "departments"
+  Department |o--o{ Department : "parent"
+  Department |o--o{ Asset : "owned by (NEW)"
+  Department |o--o{ AssetAssignment : "issued to (NEW)"
+
+  %% ---------------- New relationships: P3 optional ----------------
+  Asset ||--o{ Meter : "meters"
+  Meter ||--o{ MeterReading : "readings"
+  Meter |o--o{ MaintenancePlan : "triggers"
+  Party |o--o{ Licence : "publisher"
+  AssetType |o--o{ Licence : "software type"
+  Licence ||--o{ LicenceSeat : "seats"
+  User |o--o{ LicenceSeat : "assigned user"
+  Asset |o--o{ LicenceSeat : "assigned device"
+
+  %% ================= Existing entities =================
+  Organization
+  User
+  Project
+  Task
+
+  AssetSequence {
+    uuid organization_id PK "1:1 with org"
+    string prefix "ASSET-"
+    string suffix
+    int padding
+    int next_value
+  }
+
+  AssetType {
+    uuid id PK
+    uuid organization_id FK "NULL = global built-in"
+    string slug "key, unique per org"
+    enum tracking_mode "single | quantity"
+    string name
+    text description
+    string icon
+    string color
+    bool is_builtin
+    uuid forked_from_id FK
+    bool is_archived
+    json standard_fields
+    json attribute_schema
+    json lifecycle_states
+    bool allows_photo
+    bool allows_invoice
+    int max_concurrent_assignees
+    enum default_depreciation_method "NEW"
+    int useful_life_months "NEW"
+  }
+
+  Site {
+    uuid id PK
+    uuid organization_id FK
+    uuid parent_id FK "NEW: region"
+    string name "unique per org"
+    enum type "site | warehouse"
+    string code
+    string address
+    string city
+    string country
+    text notes
+    bool is_active
+  }
+
+  Asset {
+    uuid id PK
+    uuid organization_id FK
+    uuid asset_type_id FK
+    uuid asset_model_id FK "NEW"
+    uuid project_id FK
+    string human_id "unique per org"
+    int sequence_number
+    string name
+    string serial_number
+    string barcode "NEW: barcode / QR / RFID"
+    string category
+    uuid current_site_id FK
+    uuid location_id FK "NEW: replaces location string"
+    uuid parent_id FK
+    uuid vendor_id FK "NEW"
+    uuid department_id FK "NEW"
+    enum status "NEW: was free string"
+    decimal purchase_value
+    decimal current_value "NEW: from DepreciationEntry"
+    string currency "default USD"
+    date acquired_on
+    date warranty_until "NEW"
+    decimal tax_rate
+    enum tax_type "CGST_SGST | IGST | NONE"
+    decimal transport_charges
+    decimal other_charges
+    decimal landed_cost "computed"
+    decimal quantity_on_hand "cache of StockBalance"
+    string unit
+    decimal reorder_point
+    decimal unit_cost
+    json custom_attributes
+    json acknowledged_hidden_fields
+    int assigned_to_id FK
+    bool is_active "soft delete"
+    bool is_catalog_part
+  }
+
+  AssetManagerGrant {
+    uuid id PK
+    uuid organization_id FK
+    int user_id FK "one active per org+user"
+    int granted_by_id FK
+    datetime granted_at
+    datetime revoked_at "NULL = active"
+    int revoked_by_id FK
+  }
+
+  SavedAssetFilter {
+    uuid id PK
+    int user_id FK
+    uuid organization_id FK
+    string name
+    json conditions
+  }
+
+  AssetImage {
+    uuid id PK
+    uuid asset_id FK "1:1"
+    binary data
+    string file_name
+    string content_type
+    int size
+    int uploaded_by_id FK
+  }
+
+  AssetInvoice {
+    uuid id PK
+    uuid asset_id FK "NEW: many per asset"
+    binary data
+    string file_name
+    string content_type
+    int size
+    string invoice_number
+    date invoice_date
+    uuid vendor_id FK "NEW: replaces free-text vendor"
+    decimal amount
+    string currency
+    int uploaded_by_id FK
+  }
+
+  AssetAssignment {
+    uuid id PK
+    uuid asset_id FK
+    enum assignee_type "NEW: user | department | site | asset"
+    int assignee_id FK "one open row per person"
+    uuid department_id FK "NEW"
+    uuid task_id FK
+    datetime checked_out_at
+    datetime checked_in_at "NULL = open"
+    decimal quantity "NULL for single items"
+    uuid movement_id FK
+    uuid returned_movement_id FK
+    text notes
+    int created_by_id FK
+  }
+
+  MaintenanceLog {
+    uuid id PK
+    uuid asset_id FK
+    uuid plan_id FK "NEW"
+    enum kind "scheduled | repair | inspection"
+    enum status "NEW: planned | done | cancelled"
+    datetime performed_at
+    int performed_by_id FK
+    uuid vendor_id FK "NEW: service provider"
+    decimal cost
+    date next_due
+    text notes
+  }
+
+  StockMovement {
+    uuid id PK
+    uuid asset_id FK
+    uuid location_id FK "NEW"
+    uuid lot_id FK "NEW"
+    uuid transfer_id FK "NEW"
+    enum kind "receive | consume | adjust | NEW: transfer_in | transfer_out | return"
+    decimal quantity_delta "signed"
+    decimal unit_cost_at_receipt
+    text reason
+    bool is_opening
+    uuid project_id FK
+    uuid task_id FK
+    uuid build_id FK
+    int issued_to_id FK
+    int performed_by_id FK
+    string source_kind "procurement / inventory doc type"
+    string source_id "doc line id, e.g. GRN line"
+    datetime created_at "append-only"
+  }
+
+  Bom {
+    uuid id PK
+    uuid asset_id FK "the board"
+    string name
+    string version "unique per asset"
+    text notes
+    enum status "draft | released | obsolete"
+    datetime released_at
+    int released_by_id FK
+    bool is_active
+  }
+
+  BomLine {
+    uuid id PK
+    uuid bom_id FK
+    uuid component_id FK "unique per bom"
+    decimal quantity_per
+    text reference_designators
+    int position
+    bool is_fitted "false = DNP"
+    text notes
+  }
+
+  BomLineAlternate {
+    uuid id PK
+    uuid line_id FK
+    uuid component_id FK
+    int preference_order
+    bool is_approved
+    text notes
+  }
+
+  BomBuild {
+    uuid id PK
+    uuid bom_id FK
+    decimal quantity_built
+    uuid project_id FK
+    uuid task_id FK
+    int performed_by_id FK
+    decimal unit_cost_snapshot
+    decimal total_cost
+    bool cost_is_complete
+    string cost_currency
+    text notes
+  }
+
+  %% ================= New entities: P1 stock layer =================
+  Location {
+    uuid id PK
+    uuid organization_id FK
+    uuid site_id FK
+    uuid parent_id FK "self: zone > rack > bin"
+    string code "unique per site"
+    string name
+    bool is_active
+  }
+
+  StockBalance {
+    uuid id PK
+    uuid asset_id FK
+    uuid location_id FK
+    uuid lot_id FK "nullable"
+    decimal quantity "sum of ledger"
+    datetime updated_at "unique asset+location+lot"
+  }
+
+  Lot {
+    uuid id PK
+    uuid asset_id FK
+    string lot_number "unique per asset"
+    date mfg_date
+    date expiry_date
+    uuid vendor_id FK
+    text notes
+  }
+
+  StockTransfer {
+    uuid id PK
+    uuid organization_id FK
+    string human_id
+    uuid from_site_id FK
+    uuid to_site_id FK
+    enum status "draft | in_transit | received | cancelled"
+    datetime shipped_at
+    datetime received_at
+    int created_by_id FK
+  }
+
+  StockTransferLine {
+    uuid id PK
+    uuid transfer_id FK
+    uuid asset_id FK
+    uuid lot_id FK
+    uuid from_location_id FK
+    uuid to_location_id FK
+    decimal quantity
+  }
+
+  StockCount {
+    uuid id PK
+    uuid organization_id FK
+    uuid site_id FK
+    uuid location_id FK "NULL = whole site"
+    enum scope "full | cycle | asset_audit"
+    enum status "draft | counting | posted"
+    datetime started_at
+    datetime posted_at
+    int counted_by_id FK
+  }
+
+  StockCountLine {
+    uuid id PK
+    uuid count_id FK
+    uuid asset_id FK
+    uuid lot_id FK
+    decimal expected_qty
+    decimal counted_qty
+    decimal variance "computed"
+    enum found_status "found | missing | extra"
+    uuid adjustment_movement_id FK
+  }
+
+  Party {
+    uuid id PK
+    uuid organization_id FK
+    enum type "vendor | manufacturer | customer"
+    string name
+    string gstin
+    string email
+    string phone
+    text address
+    bool is_active
+  }
+
+  %% ================= New entities: P2 lifecycle =================
+  AssetModel {
+    uuid id PK
+    uuid organization_id FK
+    uuid asset_type_id FK
+    uuid manufacturer_id FK
+    string name
+    string model_number
+    decimal default_unit_cost
+    int eol_months
+    json specs
+  }
+
+  DepreciationSchedule {
+    uuid id PK
+    uuid asset_id FK "1:1"
+    enum method "straight_line | declining | wdv"
+    decimal depreciable_base
+    decimal salvage_value
+    int useful_life_months
+    date start_date
+  }
+
+  DepreciationEntry {
+    uuid id PK
+    uuid schedule_id FK
+    date period_end
+    decimal amount
+    decimal book_value_after
+    bool is_posted
+  }
+
+  Disposal {
+    uuid id PK
+    uuid asset_id FK "1:1"
+    enum method "sold | scrapped | donated | lost | returned"
+    date disposed_on
+    decimal proceeds
+    uuid buyer_id FK
+    decimal gain_loss
+    int approved_by_id FK
+    text notes
+  }
+
+  Contract {
+    uuid id PK
+    uuid organization_id FK
+    uuid vendor_id FK
+    enum type "warranty | amc | lease | insurance"
+    string contract_number
+    date starts_on
+    date ends_on
+    decimal cost
+    int alert_days_before
+  }
+
+  ContractAsset {
+    uuid contract_id FK
+    uuid asset_id FK
+  }
+
+  Reservation {
+    uuid id PK
+    uuid asset_id FK
+    int reserved_for_id FK
+    uuid project_id FK
+    datetime starts_at
+    datetime ends_at
+    decimal quantity
+    enum status "pending | confirmed | cancelled | fulfilled"
+  }
+
+  MaintenancePlan {
+    uuid id PK
+    uuid asset_id FK "NULL = all assets of type"
+    uuid asset_type_id FK
+    string name
+    enum trigger "time | meter"
+    int interval_days
+    decimal interval_meter
+    uuid meter_id FK
+    date next_due
+    bool is_active
+  }
+
+  Attachment {
+    uuid id PK
+    string owner_type "asset | maintenance_log | contract"
+    uuid owner_id
+    enum kind "photo | invoice | manual | certificate | other"
+    binary data
+    string file_name
+    string content_type
+    int size
+    int uploaded_by_id FK
+  }
+
+  ActivityLog {
+    uuid id PK
+    uuid organization_id FK
+    string entity_type
+    uuid entity_id
+    string action
+    json changes "before / after"
+    int actor_id FK
+    datetime created_at "append-only"
+  }
+
+  Department {
+    uuid id PK
+    uuid organization_id FK
+    uuid parent_id FK
+    string name
+    string cost_center_code
+    int head_id FK
+  }
+
+  %% ================= New entities: P3 optional =================
+  Meter {
+    uuid id PK
+    uuid asset_id FK
+    enum unit "hours | km | cycles"
+    decimal last_reading
+    datetime last_read_at
+  }
+
+  MeterReading {
+    uuid id PK
+    uuid meter_id FK
+    decimal value
+    datetime read_at
+    int read_by_id FK
+  }
+
+  Licence {
+    uuid id PK
+    uuid organization_id FK
+    uuid asset_type_id FK
+    uuid vendor_id FK
+    string product_key
+    int seats
+    date expires_on
+    decimal cost
+  }
+
+  LicenceSeat {
+    uuid id PK
+    uuid licence_id FK
+    int assigned_user_id FK
+    uuid assigned_asset_id FK
+    datetime assigned_at
+    datetime released_at
+  }
+
+  %% ================= Styling =================
+  classDef p1 fill:#FFE8CC,stroke:#D9480F,stroke-width:2px
+  classDef p2 fill:#E6FCF5,stroke:#0C8599,stroke-width:2px
+  classDef p3 fill:#F3F0FF,stroke:#7048E8,stroke-width:2px,stroke-dasharray:5 3
+  class Location,StockBalance,Lot,StockTransfer,StockTransferLine,StockCount,StockCountLine,Party p1
+  class AssetModel,DepreciationSchedule,DepreciationEntry,Disposal,Contract,ContractAsset,Reservation,MaintenancePlan,Attachment,ActivityLog,Department p2
+  class Meter,MeterReading,Licence,LicenceSeat p3
