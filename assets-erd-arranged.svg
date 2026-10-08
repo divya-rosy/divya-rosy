@@ -1,0 +1,1647 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5874 3577" width="5874" height="3577">
+<title>Assets ERD (full target schema)</title>
+<style>
+  .t{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+  .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace;font-size:11px}
+  .e path.l{fill:none;stroke:#8792a6;stroke-width:1.3}
+  .e text{font-size:10px;fill:#56607a}
+  .e rect{fill:#fff;opacity:.9}
+  .e:hover path.l{stroke:#d9480f;stroke-width:2.6}
+  .e:hover text{fill:#d9480f;font-weight:600}
+  .e:hover rect{opacity:1}
+</style>
+<defs>
+<marker id="one" viewBox="0 0 22 16" refX="20" refY="8" markerWidth="22" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><g fill="#fff" stroke="#5b6478" stroke-width="1.4"><path d="M12,2V14M16,2V14"/></g></marker>
+<marker id="zone" viewBox="0 0 22 16" refX="20" refY="8" markerWidth="22" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><g fill="#fff" stroke="#5b6478" stroke-width="1.4"><path d="M16,2V14"/><circle cx="8" cy="8" r="3.6"/></g></marker>
+<marker id="many" viewBox="0 0 22 16" refX="20" refY="8" markerWidth="22" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><g fill="#fff" stroke="#5b6478" stroke-width="1.4"><path d="M10,8L20,1M10,8H20M10,8L20,15" fill="none"/><circle cx="5" cy="8" r="3.6"/></g></marker>
+<marker id="omany" viewBox="0 0 22 16" refX="20" refY="8" markerWidth="22" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><g fill="#fff" stroke="#5b6478" stroke-width="1.4"><path d="M10,8L20,1M10,8H20M10,8L20,15" fill="none"/><path d="M6,2V14"/></g></marker>
+</defs>
+<rect width="5874" height="3577" fill="#ffffff"/>
+<text class="t" x="40" y="46" font-size="26" font-weight="700" fill="#1f2433">Assets ERD — full target schema</text>
+<text class="t" x="40" y="70" font-size="13" fill="#5b6478">42 entities · 89 relationships · existing assets-erd_1 entities plus the P1/P2/P3 additions from the gap analysis. Hover a line to highlight it.</text>
+<rect x="40" y="84" width="16" height="12" rx="2" fill="#ECECFF" stroke="#9370DB" stroke-width="1.5" /><text class="t" x="62" y="94" font-size="12" fill="#3a4152">Existing (assets-erd_1)</text>
+<rect x="241.79999999999998" y="84" width="16" height="12" rx="2" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.5" /><text class="t" x="263.79999999999995" y="94" font-size="12" fill="#3a4152">P1 · stock layer</text>
+<rect x="397.4" y="84" width="16" height="12" rx="2" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.5" /><text class="t" x="419.4" y="94" font-size="12" fill="#3a4152">P2 · lifecycle</text>
+<rect x="539.8" y="84" width="16" height="12" rx="2" fill="#DFF5EA" stroke="#1F9D5C" stroke-width="1.5" stroke-dasharray="5 3"/><text class="t" x="561.8" y="94" font-size="12" fill="#3a4152">P3 · optional</text>
+<path d="M675.5999999999999,90H709.5999999999999" stroke="#8792a6" stroke-width="1.3" marker-end="url(#one)"/><text class="t" x="715.5999999999999" y="94" font-size="12" fill="#3a4152">exactly one</text>
+<path d="M818.1999999999999,90H852.1999999999999" stroke="#8792a6" stroke-width="1.3" marker-end="url(#zone)"/><text class="t" x="858.1999999999999" y="94" font-size="12" fill="#3a4152">zero or one</text>
+<path d="M960.8,90H994.8" stroke="#8792a6" stroke-width="1.3" marker-end="url(#many)"/><text class="t" x="1000.8" y="94" font-size="12" fill="#3a4152">zero or many</text>
+<path d="M1110,90H1144" stroke="#8792a6" stroke-width="1.3" marker-end="url(#omany)"/><text class="t" x="1150" y="94" font-size="12" fill="#3a4152">one or many</text>
+<g class="e"><title>Organization ||--o| AssetSequence : numbers assets</title>
+<path class="l" d="M190,1456L208,1456Q214,1456 214,1450L214,693Q214,687 220,687L523.6,687" marker-start="url(#one)" marker-end="url(#zone)"/>
+<rect x="313.6" y="692" width="86.39999999999999" height="14" rx="3"/><text class="t" x="356.8" y="702.5" text-anchor="middle">numbers assets</text>
+</g>
+<g class="e"><title>Organization |o--o{ AssetType : owns (NULL = built-in)</title>
+<path class="l" d="M190,1464L236,1464Q242,1464 242,1458L242,1020Q242,1014 248,1014L523.6,1014" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="291.2" y="1019" width="131.2" height="14" rx="3"/><text class="t" x="356.79999999999995" y="1029.5" text-anchor="middle">owns (NULL = built-in)</text>
+</g>
+<g class="e"><title>Organization ||--o{ Site : has</title>
+<path class="l" d="M190,1480L236,1480Q242,1480 242,1486L242,2573Q242,2579 248,2579L618.8000000000001,2579" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="344.4" y="2584" width="24.799999999999997" height="14" rx="3"/><text class="t" x="356.79999999999995" y="2594.5" text-anchor="middle">has</text>
+</g>
+<g class="e"><title>Organization ||--o{ Asset : owns</title>
+<path class="l" d="M190,1476L250,1476Q256,1476 256,1482L256,1686Q256,1692 262,1692L2167.4,1692" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1158.6" y="1697" width="30.4" height="14" rx="3"/><text class="t" x="1173.8" y="1707.5" text-anchor="middle">owns</text>
+</g>
+<g class="e"><title>Organization ||--o{ AssetManagerGrant : grants</title>
+<path class="l" d="M190,1472L1072.6,1472Q1078.6,1472 1078.6,1466L1078.6,1300Q1078.6,1294 1084.6,1294L2095.4,1294Q2101.4,1294 2101.4,1288L2101.4,1226Q2101.4,1220 2107.4,1220L2167.4,1220" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1153" y="1299" width="41.599999999999994" height="14" rx="3"/><text class="t" x="1173.8" y="1309.5" text-anchor="middle">grants</text>
+</g>
+<g class="e"><title>Organization ||--o{ SavedAssetFilter : scopes</title>
+<path class="l" d="M190,1460L222,1460Q228,1460 228,1454L228,779Q228,773 234,773L2095.4,773Q2101.4,773 2101.4,779L2101.4,862Q2101.4,868 2107.4,868L2167.4,868" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1153" y="778" width="41.599999999999994" height="14" rx="3"/><text class="t" x="1173.8" y="788.5" text-anchor="middle">scopes</text>
+</g>
+<g class="e"><title>User ||--o{ SavedAssetFilter : saves</title>
+<path class="l" d="M1733,1084L1779,1084Q1785,1084 1785,1078L1785,916Q1785,910 1791,910L2167.4,910" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1960.2" y="915" width="36" height="14" rx="3"/><text class="t" x="1978.2" y="925.5" text-anchor="middle">saves</text>
+</g>
+<g class="e"><title>User ||--o{ AssetManagerGrant : holds</title>
+<path class="l" d="M1733,1094L1779,1094Q1785,1094 1785,1100L1785,1107Q1785,1113 1791,1113L2095.4,1113Q2101.4,1113 2101.4,1119L2101.4,1160Q2101.4,1166 2107.4,1166L2167.4,1166" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1960.2" y="1118" width="36" height="14" rx="3"/><text class="t" x="1978.2" y="1128.5" text-anchor="middle">holds</text>
+</g>
+<g class="e"><title>AssetType |o--o{ AssetType : forked_from</title>
+<path class="l" d="M667.9333333333334,826L667.9333333333334,821Q667.9333333333334,816 672.9333333333334,816L807.2666666666667,816Q812.2666666666667,816 812.2666666666667,821L812.2666666666667,826" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="705.3" y="798" width="69.6" height="14" rx="3"/><text class="t" x="740.0999999999999" y="808.5" text-anchor="middle">forked_from</text>
+</g>
+<g class="e"><title>AssetType ||--o{ Asset : PROTECT - shapes</title>
+<path class="l" d="M956.6,1127L1058.6,1127Q1064.6,1127 1064.6,1133L1064.6,1629Q1064.6,1635 1070.6,1635L1765.5,1635Q1771,1635 1771,1629.5L1771,1629.5Q1771,1624 1776.5,1624L2167.4,1624" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1471.2" y="1640" width="97.6" height="14" rx="3"/><text class="t" x="1520" y="1650.5" text-anchor="middle">PROTECT - shapes</text>
+</g>
+<g class="e"><title>Site |o--o{ Asset : current_site (SET_NULL)</title>
+<path class="l" d="M932.8000000000001,2509L988.6,2509Q994.6,2509 994.6,2503L994.6,1766Q994.6,1760 1000.6,1760L2167.4,1760" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1451.6" y="1765" width="136.79999999999998" height="14" rx="3"/><text class="t" x="1520" y="1775.5" text-anchor="middle">current_site (SET_NULL)</text>
+</g>
+<g class="e"><title>Project |o--o{ Asset : project (SET_NULL)</title>
+<path class="l" d="M1733,2194L1765,2194Q1771,2194 1771,2188L1771,1834Q1771,1828 1777,1828L2167.4,1828" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1923.8" y="1833" width="108.8" height="14" rx="3"/><text class="t" x="1978.2" y="1843.5" text-anchor="middle">project (SET_NULL)</text>
+</g>
+<g class="e"><title>Asset |o--o{ Asset : parent (SET_NULL)</title>
+<path class="l" d="M2327.0666666666666,1351L2327.0666666666666,1346Q2327.0666666666666,1341 2332.0666666666666,1341L2481.7333333333336,1341Q2486.7333333333336,1341 2486.7333333333336,1346L2486.7333333333336,1351" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="2355.3" y="1323" width="103.19999999999999" height="14" rx="3"/><text class="t" x="2406.9" y="1333.5" text-anchor="middle">parent (SET_NULL)</text>
+</g>
+<g class="e"><title>User |o--o{ Asset : assigned_to (primary holder cache)</title>
+<path class="l" d="M1733,1099L1765,1099Q1771,1099 1771,1105L1771,1550Q1771,1556 1777,1556L2167.4,1556" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1879" y="1561" width="198.39999999999998" height="14" rx="3"/><text class="t" x="1978.2" y="1571.5" text-anchor="middle">assigned_to (primary holder cache)</text>
+</g>
+<g class="e"><title>Asset ||--o| AssetImage : photo</title>
+<path class="l" d="M2646.4,1816L2762.4,1816Q2768.4,1816 2768.4,1822L2768.4,2060Q2768.4,2066 2774.4,2066L3131.2000000000003,2066" marker-start="url(#one)" marker-end="url(#zone)"/>
+<rect x="2954.8" y="2071" width="36" height="14" rx="3"/><text class="t" x="2972.8" y="2081.5" text-anchor="middle">photo</text>
+</g>
+<g class="e"><title>Asset ||--o{ AssetInvoice : invoices (NEW: was 1:1)</title>
+<path class="l" d="M2646.4,1568L2762.4,1568Q2768.4,1568 2768.4,1562L2768.4,1006Q2768.4,1000 2774.4,1000L3131.2000000000003,1000" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2904.4" y="1005" width="136.79999999999998" height="14" rx="3"/><text class="t" x="2972.8" y="1015.5" text-anchor="middle">invoices (NEW: was 1:1)</text>
+</g>
+<g class="e"><title>Asset ||--o{ AssetAssignment : assignments</title>
+<path class="l" d="M2646.4,1630L2790.4,1630Q2796.4,1630 2796.4,1624L2796.4,1392Q2796.4,1386 2802.4,1386L5302.000000000001,1386Q5308.000000000001,1386 5308.000000000001,1392L5308.000000000001,2503Q5308.000000000001,2509 5314.000000000001,2509L5374.000000000001,2509" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="4063.9" y="1391" width="69.6" height="14" rx="3"/><text class="t" x="4098.7" y="1401.5" text-anchor="middle">assignments</text>
+</g>
+<g class="e"><title>User ||--o{ AssetAssignment : assignee</title>
+<path class="l" d="M1733,1089L1798.5,1089Q1799,1089 1799,1088.5L1799,1088.5Q1799,1088 1799.5,1088L2664.4,1088Q2670.4,1088 2670.4,1094L2670.4,1314Q2670.4,1320 2676.4,1320L3059.2000000000003,1320Q3065.2000000000003,1320 3065.2000000000003,1326L3065.2000000000003,1365Q3065.2000000000003,1371 3071.2000000000003,1371L3602.2000000000003,1371Q3608.2000000000003,1371 3608.2000000000003,1365L3608.2000000000003,1348Q3608.2000000000003,1342 3614.2000000000003,1342L5316.000000000001,1342Q5322.000000000001,1342 5322.000000000001,1348L5322.000000000001,2456Q5322.000000000001,2462 5328.000000000001,2462L5374.000000000001,2462" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3735.8" y="1347" width="52.8" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="1357.5" text-anchor="middle">assignee</text>
+</g>
+<g class="e"><title>Task |o--o{ AssetAssignment : for task</title>
+<path class="l" d="M3570.2000000000003,2661L3644.2000000000003,2661Q3650.2000000000003,2661 3650.2000000000003,2655L3650.2000000000003,2563Q3650.2000000000003,2557 3656.2000000000003,2557L5374.000000000001,2557" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="4394.800000000001" y="2562" width="52.8" height="14" rx="3"/><text class="t" x="4421.200000000001" y="2572.5" text-anchor="middle">for task</text>
+</g>
+<g class="e"><title>Asset ||--o{ MaintenanceLog : maintenance_logs</title>
+<path class="l" d="M2646.4,1444L2706.4,1444Q2712.4,1444 2712.4,1438L2712.4,325Q2712.4,319 2718.4,319L4572.533333333334,319" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3713.4" y="324" width="97.6" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="334.5" text-anchor="middle">maintenance_logs</text>
+</g>
+<g class="e"><title>Asset ||--o{ StockMovement : stock ledger</title>
+<path class="l" d="M2646.4,1971L2692.4,1971Q2698.4,1971 2698.4,1977L2698.4,3128Q2698.4,3134 2704.4,3134L4557.200000000001,3134" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3724.6000000000004" y="3139" width="75.19999999999999" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="3149.5" text-anchor="middle">stock ledger</text>
+</g>
+<g class="e"><title>StockMovement |o--o{ AssetAssignment : movement / returned_movement</title>
+<path class="l" d="M5029.200000000001,3156L5047.200000000001,3156Q5053.200000000001,3156 5053.200000000001,3150L5053.200000000001,2611Q5053.200000000001,2605 5059.200000000001,2605L5374.000000000001,2605" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="5119.200000000001" y="2610" width="164.79999999999998" height="14" rx="3"/><text class="t" x="5201.6" y="2620.5" text-anchor="middle">movement / returned_movement</text>
+</g>
+<g class="e"><title>Asset ||--o{ Bom : board / product</title>
+<path class="l" d="M2646.4,1878L2734.4,1878Q2740.4,1878 2740.4,1884L2740.4,2498Q2740.4,2504 2746.4,2504L3161.866666666667,2504" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2926.8" y="2509" width="92" height="14" rx="3"/><text class="t" x="2972.8" y="2519.5" text-anchor="middle">board / product</text>
+</g>
+<g class="e"><title>Bom ||--o{ BomLine : lines</title>
+<path class="l" d="M3554.866666666667,2471L3616.2000000000003,2471Q3622.2000000000003,2471 3622.2000000000003,2465L3622.2000000000003,1580Q3622.2000000000003,1574 3628.2000000000003,1574L3920.866666666667,1574" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3744.2000000000003" y="1579" width="36" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="1589.5" text-anchor="middle">lines</text>
+</g>
+<g class="e"><title>Asset ||--o{ BomLine : component (PROTECT)</title>
+<path class="l" d="M2646.4,1723L2832.4,1723Q2838.4,1723 2838.4,1717L2838.4,1606Q2838.4,1600 2844.4,1600L3602.2000000000003,1600Q3608.2000000000003,1600 3608.2000000000003,1594L3608.2000000000003,1520Q3608.2000000000003,1514 3614.2000000000003,1514L3920.866666666667,1514" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3293.5000000000005" y="1605" width="114.39999999999999" height="14" rx="3"/><text class="t" x="3350.7000000000003" y="1615.5" text-anchor="middle">component (PROTECT)</text>
+</g>
+<g class="e"><title>BomLine ||--o{ BomLineAlternate : alternates</title>
+<path class="l" d="M4267.866666666667,1544L4303.200000000001,1544Q4309.200000000001,1544 4309.200000000001,1538L4309.200000000001,1512Q4309.200000000001,1506 4315.200000000001,1506L4557.200000000001,1506" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="4389.200000000001" y="1511" width="64" height="14" rx="3"/><text class="t" x="4421.200000000001" y="1521.5" text-anchor="middle">alternates</text>
+</g>
+<g class="e"><title>Asset ||--o{ BomLineAlternate : substitute (PROTECT)</title>
+<path class="l" d="M2646.4,1661L2804.4,1661Q2810.4,1661 2810.4,1655L2810.4,1407Q2810.4,1401 2816.4,1401L3603.2000000000003,1401Q3608.2000000000003,1401 3608.2000000000003,1406L3608.2000000000003,1406Q3608.2000000000003,1411 3613.2000000000003,1411L3840.2000000000003,1411Q3846.2000000000003,1411 3846.2000000000003,1417L3846.2000000000003,1424Q3846.2000000000003,1430 3852.2000000000003,1430L4485.200000000001,1430Q4491.200000000001,1430 4491.200000000001,1436L4491.200000000001,1452Q4491.200000000001,1458 4497.200000000001,1458L4557.200000000001,1458" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3702.2000000000003" y="1416" width="120" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="1426.5" text-anchor="middle">substitute (PROTECT)</text>
+</g>
+<g class="e"><title>Bom ||--o{ BomBuild : builds</title>
+<path class="l" d="M3554.866666666667,2537L3588.2000000000003,2537Q3594.2000000000003,2537 3594.2000000000003,2543L3594.2000000000003,2635Q3594.2000000000003,2641 3600.2000000000003,2641L3868.2000000000003,2641Q3874.2000000000003,2641 3874.2000000000003,2647L3874.2000000000003,2738Q3874.2000000000003,2744 3880.2000000000003,2744L3949.7000000000003,2744" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3741.4" y="2646" width="41.599999999999994" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="2656.5" text-anchor="middle">builds</text>
+</g>
+<g class="e"><title>BomBuild |o--o{ StockMovement : consumes via</title>
+<path class="l" d="M4172.700000000001,2802L4485.200000000001,2802Q4491.200000000001,2802 4491.200000000001,2808L4491.200000000001,3084Q4491.200000000001,3090 4497.200000000001,3090L4557.200000000001,3090" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="4383.6" y="2807" width="75.19999999999999" height="14" rx="3"/><text class="t" x="4421.200000000001" y="2817.5" text-anchor="middle">consumes via</text>
+</g>
+<g class="e"><title>Project |o--o{ StockMovement : consumed for</title>
+<path class="l" d="M1733,2218L1807,2218Q1813,2218 1813,2224L1813,3399Q1813,3405 1819,3405L4485.200000000001,3405Q4491.200000000001,3405 4491.200000000001,3399L4491.200000000001,3228Q4491.200000000001,3222 4497.200000000001,3222L4557.200000000001,3222" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="3313.1000000000004" y="3410" width="75.19999999999999" height="14" rx="3"/><text class="t" x="3350.7000000000003" y="3420.5" text-anchor="middle">consumed for</text>
+</g>
+<g class="e"><title>Project |o--o{ BomBuild : built for</title>
+<path class="l" d="M1733,2210L1849,2210Q1855,2210 1855,2216L1855,2709Q1855,2715 1861,2715L3592.2000000000003,2715Q3594.2000000000003,2715 3594.2000000000003,2717L3594.2000000000003,2717Q3594.2000000000003,2719 3596.2000000000003,2719L3840.2000000000003,2719Q3846.2000000000003,2719 3846.2000000000003,2725L3846.2000000000003,2854Q3846.2000000000003,2860 3852.2000000000003,2860L3949.7000000000003,2860" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="2943.6" y="2720" width="58.4" height="14" rx="3"/><text class="t" x="2972.7999999999997" y="2730.5" text-anchor="middle">built for</text>
+</g>
+<g class="e"><title>Task |o--o{ StockMovement : task</title>
+<path class="l" d="M3570.2000000000003,2671L3658.2000000000003,2671Q3664.2000000000003,2671 3664.2000000000003,2665L3664.2000000000003,2622Q3664.2000000000003,2616 3670.2000000000003,2616L4499.200000000001,2616Q4505.200000000001,2616 4505.200000000001,2622L4505.200000000001,3041Q4505.200000000001,3047 4511.200000000001,3047L4557.200000000001,3047" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="4083.5000000000005" y="2621" width="30.4" height="14" rx="3"/><text class="t" x="4098.700000000001" y="2631.5" text-anchor="middle">task</text>
+</g>
+<g class="e"><title>Task |o--o{ BomBuild : task</title>
+<path class="l" d="M3570.2000000000003,2681L3675.2000000000003,2681Q3678.2000000000003,2681 3678.2000000000003,2678L3678.2000000000003,2678Q3678.2000000000003,2675 3681.2000000000003,2675L3854.2000000000003,2675Q3860.2000000000003,2675 3860.2000000000003,2681L3860.2000000000003,2796Q3860.2000000000003,2802 3866.2000000000003,2802L3949.7000000000003,2802" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="3747.0000000000005" y="2680" width="30.4" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="2690.5" text-anchor="middle">task</text>
+</g>
+<g class="e"><title>Site ||--o{ Location : bins / shelves</title>
+<path class="l" d="M932.8000000000001,2556L1359.8,2556" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1130.6" y="2561" width="86.39999999999999" height="14" rx="3"/><text class="t" x="1173.8" y="2571.5" text-anchor="middle">bins / shelves</text>
+</g>
+<g class="e"><title>Location |o--o{ Location : parent</title>
+<path class="l" d="M1479.8,2476L1479.8,2471Q1479.8,2466 1484.8,2466L1594.8,2466Q1599.8,2466 1599.8,2471L1599.8,2476" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1519" y="2448" width="41.599999999999994" height="14" rx="3"/><text class="t" x="1539.8" y="2458.5" text-anchor="middle">parent</text>
+</g>
+<g class="e"><title>Location |o--o{ Asset : stored at (NEW)</title>
+<path class="l" d="M1719.8,2508L1779,2508Q1785,2508 1785,2502L1785,1903Q1785,1897 1791,1897L2167.4,1897" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1932.2" y="1902" width="92" height="14" rx="3"/><text class="t" x="1978.2" y="1912.5" text-anchor="middle">stored at (NEW)</text>
+</g>
+<g class="e"><title>Location ||--o{ StockMovement : at location (NEW)</title>
+<path class="l" d="M1719.8,2604L1779,2604Q1785,2604 1785,2610L1785,3433Q1785,3439 1791,3439L4499.200000000001,3439Q4505.200000000001,3439 4505.200000000001,3433L4505.200000000001,3271Q4505.200000000001,3265 4511.200000000001,3265L4557.200000000001,3265" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3299.1000000000004" y="3444" width="103.19999999999999" height="14" rx="3"/><text class="t" x="3350.7000000000003" y="3454.5" text-anchor="middle">at location (NEW)</text>
+</g>
+<g class="e"><title>Asset ||--o{ StockBalance : on hand per place</title>
+<path class="l" d="M2646.4,1785L2860.4,1785Q2866.4,1785 2866.4,1791L2866.4,1910Q2866.4,1916 2872.4,1916L3630.2000000000003,1916Q3636.2000000000003,1916 3636.2000000000003,1922L3636.2000000000003,1922Q3636.2000000000003,1928 3642.2000000000003,1928L3912.2000000000003,1928" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3299.1000000000004" y="1921" width="103.19999999999999" height="14" rx="3"/><text class="t" x="3350.7000000000003" y="1931.5" text-anchor="middle">on hand per place</text>
+</g>
+<g class="e"><title>Location ||--o{ StockBalance : holds</title>
+<path class="l" d="M1719.8,2540L1835,2540Q1841,2540 1841,2546L1841,2620Q1841,2626 1847,2626L3630.2000000000003,2626Q3636.2000000000003,2626 3636.2000000000003,2620L3636.2000000000003,1970Q3636.2000000000003,1964 3642.2000000000003,1964L3912.2000000000003,1964" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2954.8" y="2631" width="36" height="14" rx="3"/><text class="t" x="2972.8" y="2641.5" text-anchor="middle">holds</text>
+</g>
+<g class="e"><title>Lot |o--o{ StockBalance : of lot</title>
+<path class="l" d="M3494.2000000000003,2249L3588.2000000000003,2249Q3594.2000000000003,2249 3594.2000000000003,2243L3594.2000000000003,1878Q3594.2000000000003,1872 3600.2000000000003,1872L3840.2000000000003,1872Q3846.2000000000003,1872 3846.2000000000003,1878L3846.2000000000003,1887Q3846.2000000000003,1893 3852.2000000000003,1893L3912.2000000000003,1893" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="3741.4" y="1877" width="41.599999999999994" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="1887.5" text-anchor="middle">of lot</text>
+</g>
+<g class="e"><title>Asset ||--o{ Lot : batches</title>
+<path class="l" d="M2646.4,1847L2748.4,1847Q2754.4,1847 2754.4,1853L2754.4,2297Q2754.4,2303 2760.4,2303L3207.2000000000003,2303" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2949.2000000000003" y="2308" width="47.199999999999996" height="14" rx="3"/><text class="t" x="2972.8" y="2318.5" text-anchor="middle">batches</text>
+</g>
+<g class="e"><title>Lot |o--o{ StockMovement : lot (NEW)</title>
+<path class="l" d="M3494.2000000000003,2303L3658.2000000000003,2303Q3664.2000000000003,2303 3664.2000000000003,2309L3664.2000000000003,2576Q3664.2000000000003,2582 3670.2000000000003,2582L4303.200000000001,2582Q4309.200000000001,2582 4309.200000000001,2588L4309.200000000001,2595Q4309.200000000001,2601 4315.200000000001,2601L4513.200000000001,2601Q4519.200000000001,2601 4519.200000000001,2607L4519.200000000001,2997Q4519.200000000001,3003 4525.200000000001,3003L4557.200000000001,3003" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="4069.5000000000005" y="2587" width="58.4" height="14" rx="3"/><text class="t" x="4098.700000000001" y="2597.5" text-anchor="middle">lot (NEW)</text>
+</g>
+<g class="e"><title>Organization ||--o{ StockTransfer : transfers</title>
+<path class="l" d="M190,1488L208,1488Q214,1488 214,1494L214,2969Q214,2975 220,2975L1235,2975Q1241,2975 1241,2981L1241,3113Q1241,3119 1247,3119L1307,3119" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="710.9000000000001" y="2980" width="58.4" height="14" rx="3"/><text class="t" x="740.1000000000001" y="2990.5" text-anchor="middle">transfers</text>
+</g>
+<g class="e"><title>Site ||--o{ StockTransfer : from / to</title>
+<path class="l" d="M932.8000000000001,2649L974.6,2649Q980.6,2649 980.6,2655L980.6,2925Q980.6,2931 986.6,2931L1249,2931Q1255,2931 1255,2937L1255,3041Q1255,3047 1261,3047L1307,3047" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1144.6" y="2936" width="58.4" height="14" rx="3"/><text class="t" x="1173.8" y="2946.5" text-anchor="middle">from / to</text>
+</g>
+<g class="e"><title>StockTransfer ||--|{ StockTransferLine : lines</title>
+<path class="l" d="M1733,3047L1821,3047Q1827,3047 1827,3041L1827,2843Q1827,2837 1833,2837L2721.4,2837Q2726.4,2837 2726.4,2842L2726.4,2842Q2726.4,2847 2731.4,2847L3131.2000000000003,2847" marker-start="url(#one)" marker-end="url(#omany)"/>
+<rect x="2388.9" y="2842" width="36" height="14" rx="3"/><text class="t" x="2406.9" y="2852.5" text-anchor="middle">lines</text>
+</g>
+<g class="e"><title>Asset ||--o{ StockTransferLine : moves</title>
+<path class="l" d="M2646.4,1909L2720.4,1909Q2726.4,1909 2726.4,1915L2726.4,2787Q2726.4,2793 2732.4,2793L3131.2000000000003,2793" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2954.8" y="2798" width="36" height="14" rx="3"/><text class="t" x="2972.8" y="2808.5" text-anchor="middle">moves</text>
+</g>
+<g class="e"><title>StockTransfer |o--o{ StockMovement : posts 2 legs (NEW)</title>
+<path class="l" d="M1733,3119L1765,3119Q1771,3119 1771,3125L1771,3467Q1771,3473 1777,3473L4513.200000000001,3473Q4519.200000000001,3473 4519.200000000001,3467L4519.200000000001,3315Q4519.200000000001,3309 4525.200000000001,3309L4557.200000000001,3309" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="3296.3" y="3478" width="108.8" height="14" rx="3"/><text class="t" x="3350.7000000000003" y="3488.5" text-anchor="middle">posts 2 legs (NEW)</text>
+</g>
+<g class="e"><title>Site ||--o{ StockCount : counted</title>
+<path class="l" d="M932.8000000000001,2602L988.6,2602Q994.6,2602 994.6,2608L994.6,2900Q994.6,2906 1000.6,2906L1765,2906Q1771,2906 1771,2912L1771,3032Q1771,3038 1777,3038L2196.0666666666666,3038" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1496.4" y="2911" width="47.199999999999996" height="14" rx="3"/><text class="t" x="1520" y="2921.5" text-anchor="middle">counted</text>
+</g>
+<g class="e"><title>Location |o--o{ StockCount : scope</title>
+<path class="l" d="M1719.8,2572L1793,2572Q1799,2572 1799,2578L1799,2966Q1799,2972 1805,2972L2196.0666666666666,2972" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1960.2" y="2977" width="36" height="14" rx="3"/><text class="t" x="1978.2" y="2987.5" text-anchor="middle">scope</text>
+</g>
+<g class="e"><title>StockCount ||--|{ StockCountLine : lines</title>
+<path class="l" d="M2589.0666666666666,3005L2664.4,3005Q2670.4,3005 2670.4,3011L2670.4,3284Q2670.4,3290 2676.4,3290L3139.866666666667,3290" marker-start="url(#one)" marker-end="url(#omany)"/>
+<rect x="2954.8" y="3295" width="36" height="14" rx="3"/><text class="t" x="2972.8" y="3305.5" text-anchor="middle">lines</text>
+</g>
+<g class="e"><title>Asset ||--o{ StockCountLine : counted item</title>
+<path class="l" d="M2646.4,2002L2678.4,2002Q2684.4,2002 2684.4,2008L2684.4,3218Q2684.4,3224 2690.4,3224L3139.866666666667,3224" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2935.2000000000003" y="3229" width="75.19999999999999" height="14" rx="3"/><text class="t" x="2972.8" y="3239.5" text-anchor="middle">counted item</text>
+</g>
+<g class="e"><title>StockCountLine |o--o| StockMovement : variance adjust</title>
+<path class="l" d="M3552.866666666667,3257L3588.2000000000003,3257Q3594.2000000000003,3257 3594.2000000000003,3251L3594.2000000000003,3184Q3594.2000000000003,3178 3600.2000000000003,3178L4557.200000000001,3178" marker-start="url(#zone)" marker-end="url(#zone)"/>
+<rect x="4052.7000000000003" y="3183" width="92" height="14" rx="3"/><text class="t" x="4098.700000000001" y="3193.5" text-anchor="middle">variance adjust</text>
+</g>
+<g class="e"><title>Organization ||--o{ Party : vendors, makers, customers</title>
+<path class="l" d="M190,1468L250,1468Q256,1468 256,1462L256,1356Q256,1350 262,1350L535.85,1350" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="280" y="1355" width="153.6" height="14" rx="3"/><text class="t" x="356.8" y="1365.5" text-anchor="middle">vendors, makers, customers</text>
+</g>
+<g class="e"><title>Party |o--o{ Asset : vendor (NEW)</title>
+<path class="l" d="M954.85,1375L1086.6,1375Q1092.6,1375 1092.6,1369L1092.6,1344Q1092.6,1338 1098.6,1338L1235,1338Q1241,1338 1241,1332L1241,1325Q1241,1319 1247,1319L2095.4,1319Q2101.4,1319 2101.4,1325L2101.4,1413Q2101.4,1419 2107.4,1419L2167.4,1419" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1482.4" y="1324" width="75.19999999999999" height="14" rx="3"/><text class="t" x="1520" y="1334.5" text-anchor="middle">vendor (NEW)</text>
+</g>
+<g class="e"><title>Party |o--o{ AssetInvoice : vendor (NEW)</title>
+<path class="l" d="M954.85,1326L1030.6,1326Q1036.6,1326 1036.6,1320L1036.6,981Q1036.6,975 1042.6,975L2762.4,975Q2768.4,975 2768.4,969L2768.4,922Q2768.4,916 2774.4,916L3131.2000000000003,916" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1940.6" y="980" width="75.19999999999999" height="14" rx="3"/><text class="t" x="1978.1999999999998" y="990.5" text-anchor="middle">vendor (NEW)</text>
+</g>
+<g class="e"><title>Party |o--o{ Lot : supplied by</title>
+<path class="l" d="M954.85,1424L974.6,1424Q980.6,1424 980.6,1430L980.6,2155Q980.6,2161 986.6,2161L3059.2000000000003,2161Q3065.2000000000003,2161 3065.2000000000003,2167L3065.2000000000003,2243Q3065.2000000000003,2249 3071.2000000000003,2249L3207.2000000000003,2249" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1943.4" y="2166" width="69.6" height="14" rx="3"/><text class="t" x="1978.2" y="2176.5" text-anchor="middle">supplied by</text>
+</g>
+<g class="e"><title>AssetType ||--o{ AssetModel : models</title>
+<path class="l" d="M956.6,1052L1100.6,1052Q1106.6,1052 1106.6,1058L1106.6,1514Q1106.6,1520 1112.6,1520L1377,1520" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="1153" y="1525" width="41.599999999999994" height="14" rx="3"/><text class="t" x="1173.8" y="1535.5" text-anchor="middle">models</text>
+</g>
+<g class="e"><title>Party |o--o{ AssetModel : manufacturer</title>
+<path class="l" d="M954.85,1399L1235,1399Q1241,1399 1241,1405L1241,1448Q1241,1454 1247,1454L1377,1454" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1136.1999999999998" y="1404" width="75.19999999999999" height="14" rx="3"/><text class="t" x="1173.7999999999997" y="1414.5" text-anchor="middle">manufacturer</text>
+</g>
+<g class="e"><title>AssetModel |o--o{ Asset : instance of (NEW)</title>
+<path class="l" d="M1593,1487L2167.4,1487" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1926.6" y="1492" width="103.19999999999999" height="14" rx="3"/><text class="t" x="1978.1999999999998" y="1502.5" text-anchor="middle">instance of (NEW)</text>
+</g>
+<g class="e"><title>Asset ||--o| DepreciationSchedule : depreciates</title>
+<path class="l" d="M2646.4,1940L2706.4,1940Q2712.4,1940 2712.4,1946L2712.4,3024Q2712.4,3030 2718.4,3030L3131.2000000000003,3030" marker-start="url(#one)" marker-end="url(#zone)"/>
+<rect x="2938" y="3035" width="69.6" height="14" rx="3"/><text class="t" x="2972.8" y="3045.5" text-anchor="middle">depreciates</text>
+</g>
+<g class="e"><title>DepreciationSchedule ||--o{ DepreciationEntry : periods</title>
+<path class="l" d="M3570.2000000000003,3030L3841.7000000000003,3030Q3846.2000000000003,3030 3846.2000000000003,3034.5L3846.2000000000003,3034.5Q3846.2000000000003,3039 3850.7000000000003,3039L3912.2000000000003,3039" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3738.6000000000004" y="3035" width="47.199999999999996" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="3045.5" text-anchor="middle">periods</text>
+</g>
+<g class="e"><title>Asset ||--o| Disposal : retired by</title>
+<path class="l" d="M2646.4,1599L2776.4,1599Q2782.4,1599 2782.4,1593L2782.4,1282Q2782.4,1276 2788.4,1276L3131.2000000000003,1276" marker-start="url(#one)" marker-end="url(#zone)"/>
+<rect x="2940.8" y="1281" width="64" height="14" rx="3"/><text class="t" x="2972.8" y="1291.5" text-anchor="middle">retired by</text>
+</g>
+<g class="e"><title>Party |o--o{ Disposal : buyer</title>
+<path class="l" d="M954.85,1350L1044.6,1350Q1050.6,1350 1050.6,1344L1050.6,1050Q1050.6,1044 1056.6,1044L2776.4,1044Q2782.4,1044 2782.4,1050L2782.4,1198Q2782.4,1204 2788.4,1204L3131.2000000000003,1204" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1960.2" y="1049" width="36" height="14" rx="3"/><text class="t" x="1978.2" y="1059.5" text-anchor="middle">buyer</text>
+</g>
+<g class="e"><title>Party |o--o{ Contract : vendor</title>
+<path class="l" d="M954.85,1277L988.6,1277Q994.6,1277 994.6,1271L994.6,214Q994.6,208 1000.6,208L2185.4,208" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1499.2" y="189" width="41.599999999999994" height="14" rx="3"/><text class="t" x="1520" y="199.5" text-anchor="middle">vendor</text>
+</g>
+<g class="e"><title>Contract ||--o{ ContractAsset : covers</title>
+<path class="l" d="M2637.4,241L3061.7000000000003,241Q3065.2000000000003,241 3065.2000000000003,244.5L3065.2000000000003,244.5Q3065.2000000000003,248 3068.7000000000003,248L3131.2000000000003,248" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2952" y="246" width="41.599999999999994" height="14" rx="3"/><text class="t" x="2972.8" y="256.5" text-anchor="middle">covers</text>
+</g>
+<g class="e"><title>Asset ||--o{ ContractAsset : covered by</title>
+<path class="l" d="M2646.4,1413L2692.4,1413Q2698.4,1413 2698.4,1407L2698.4,281Q2698.4,275 2704.4,275L3063.7000000000003,275Q3065.2000000000003,275 3065.2000000000003,273.5L3065.2000000000003,273.5Q3065.2000000000003,272 3066.7000000000003,272L3131.2000000000003,272" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2940.8" y="280" width="64" height="14" rx="3"/><text class="t" x="2972.8" y="290.5" text-anchor="middle">covered by</text>
+</g>
+<g class="e"><title>Asset ||--o{ Reservation : booked</title>
+<path class="l" d="M2646.4,1754L2874.4,1754Q2880.4,1754 2880.4,1760L2880.4,1851Q2880.4,1857 2886.4,1857L3059.2000000000003,1857Q3065.2000000000003,1857 3065.2000000000003,1851L3065.2000000000003,1774Q3065.2000000000003,1768 3071.2000000000003,1768L3131.2000000000003,1768" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2952" y="1862" width="41.599999999999994" height="14" rx="3"/><text class="t" x="2972.8" y="1872.5" text-anchor="middle">booked</text>
+</g>
+<g class="e"><title>User ||--o{ Reservation : reserved for</title>
+<path class="l" d="M1733,1104L1751,1104Q1757,1104 1757,1110L1757,2077Q1757,2083 1763,2083L2846.4,2083Q2852.4,2083 2852.4,2077L2852.4,1725Q2852.4,1719 2858.4,1719L3131.2000000000003,1719" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2369.3" y="2088" width="75.19999999999999" height="14" rx="3"/><text class="t" x="2406.9" y="2098.5" text-anchor="middle">reserved for</text>
+</g>
+<g class="e"><title>Project |o--o{ Reservation : for project</title>
+<path class="l" d="M1733,2202L1835,2202Q1841,2202 1841,2196L1841,2123Q1841,2117 1847,2117L2874.4,2117Q2880.4,2117 2880.4,2111L2880.4,1907Q2880.4,1901 2886.4,1901L3073.2000000000003,1901Q3079.2000000000003,1901 3079.2000000000003,1895L3079.2000000000003,1823Q3079.2000000000003,1817 3085.2000000000003,1817L3131.2000000000003,1817" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="2372.1" y="2122" width="69.6" height="14" rx="3"/><text class="t" x="2406.9" y="2132.5" text-anchor="middle">for project</text>
+</g>
+<g class="e"><title>Asset |o--o{ MaintenancePlan : plans</title>
+<path class="l" d="M2646.4,1537L2748.4,1537Q2754.4,1537 2754.4,1531L2754.4,769Q2754.4,763 2760.4,763L3840.2000000000003,763Q3846.2000000000003,763 3846.2000000000003,757L3846.2000000000003,605Q3846.2000000000003,599 3852.2000000000003,599L3912.2000000000003,599" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="3332.7000000000003" y="768" width="36" height="14" rx="3"/><text class="t" x="3350.7000000000003" y="778.5" text-anchor="middle">plans</text>
+</g>
+<g class="e"><title>AssetType |o--o{ MaintenancePlan : plans per type</title>
+<path class="l" d="M956.6,901L974.6,901Q980.6,901 980.6,895L980.6,552Q980.6,546 986.6,546L3912.2000000000003,546" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="2363.7000000000003" y="551" width="86.39999999999999" height="14" rx="3"/><text class="t" x="2406.9" y="561.5" text-anchor="middle">plans per type</text>
+</g>
+<g class="e"><title>MaintenancePlan |o--o{ MaintenanceLog : generates (NEW)</title>
+<path class="l" d="M4285.200000000001,599L4303.200000000001,599Q4309.200000000001,599 4309.200000000001,593L4309.200000000001,403Q4309.200000000001,397 4315.200000000001,397L4572.533333333334,397" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="4375.200000000001" y="402" width="92" height="14" rx="3"/><text class="t" x="4421.200000000001" y="412.5" text-anchor="middle">generates (NEW)</text>
+</g>
+<g class="e"><title>Asset ||--o{ Attachment : documents</title>
+<path class="l" d="M2646.4,1382L2678.4,1382Q2684.4,1382 2684.4,1376L2684.4,206Q2684.4,200 2690.4,200L5302.000000000001,200Q5308.000000000001,200 5308.000000000001,206L5308.000000000001,213Q5308.000000000001,219 5314.000000000001,219L5374.000000000001,219" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="4069.5000000000005" y="205" width="58.4" height="14" rx="3"/><text class="t" x="4098.700000000001" y="215.5" text-anchor="middle">documents</text>
+</g>
+<g class="e"><title>MaintenanceLog ||--o{ Attachment : reports</title>
+<path class="l" d="M4998.533333333334,358L5047.200000000001,358Q5053.200000000001,358 5053.200000000001,352L5053.200000000001,279Q5053.200000000001,273 5059.200000000001,273L5374.000000000001,273" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="5178.000000000001" y="278" width="47.199999999999996" height="14" rx="3"/><text class="t" x="5201.600000000001" y="288.5" text-anchor="middle">reports</text>
+</g>
+<g class="e"><title>Contract ||--o{ Attachment : contract files</title>
+<path class="l" d="M2637.4,175L2665.9,175Q2670.4,175 2670.4,170.5L2670.4,170.5Q2670.4,166 2674.9,166L5374.000000000001,166" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="4055.5000000000005" y="171" width="86.39999999999999" height="14" rx="3"/><text class="t" x="4098.700000000001" y="181.5" text-anchor="middle">contract files</text>
+</g>
+<g class="e"><title>User ||--o{ ActivityLog : actor</title>
+<path class="l" d="M1733,1074L1751,1074Q1757,1074 1757,1068L1757,409Q1757,403 1763,403L3131.2000000000003,403" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2388.9" y="408" width="36" height="14" rx="3"/><text class="t" x="2406.9" y="418.5" text-anchor="middle">actor</text>
+</g>
+<g class="e"><title>Asset ||--o{ ActivityLog : history</title>
+<path class="l" d="M2646.4,1475L2720.4,1475Q2726.4,1475 2726.4,1469L2726.4,469Q2726.4,463 2732.4,463L3131.2000000000003,463" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2949.2000000000003" y="468" width="47.199999999999996" height="14" rx="3"/><text class="t" x="2972.8" y="478.5" text-anchor="middle">history</text>
+</g>
+<g class="e"><title>Organization ||--o{ Department : departments</title>
+<path class="l" d="M190,1484L222,1484Q228,1484 228,1490L228,2779Q228,2785 234,2785L1455.6666666666667,2785" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="705.3" y="2766" width="69.6" height="14" rx="3"/><text class="t" x="740.0999999999999" y="2776.5" text-anchor="middle">departments</text>
+</g>
+<g class="e"><title>Department |o--o{ Department : parent</title>
+<path class="l" d="M1523.3333333333335,2714L1523.3333333333335,2709Q1523.3333333333335,2704 1528.3333333333335,2704L1586,2704Q1591,2704 1591,2709L1591,2714" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1536.3666666666668" y="2686" width="41.599999999999994" height="14" rx="3"/><text class="t" x="1557.1666666666667" y="2696.5" text-anchor="middle">parent</text>
+</g>
+<g class="e"><title>Department |o--o{ Asset : owned by (NEW)</title>
+<path class="l" d="M1658.6666666666667,2761L1821,2761Q1827,2761 1827,2755L1827,1971Q1827,1965 1833,1965L2167.4,1965" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1935" y="1970" width="86.39999999999999" height="14" rx="3"/><text class="t" x="1978.2" y="1980.5" text-anchor="middle">owned by (NEW)</text>
+</g>
+<g class="e"><title>Department |o--o{ AssetAssignment : issued to (NEW)</title>
+<path class="l" d="M1658.6666666666667,2809L1751,2809Q1757,2809 1757,2815L1757,3511Q1757,3517 1763,3517L5302.000000000001,3517Q5308.000000000001,3517 5308.000000000001,3511L5308.000000000001,2658Q5308.000000000001,2652 5314.000000000001,2652L5374.000000000001,2652" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="3716.2000000000003" y="3522" width="92" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="3532.5" text-anchor="middle">issued to (NEW)</text>
+</g>
+<g class="e"><title>Asset ||--o{ Meter : meters</title>
+<path class="l" d="M2646.4,1692L2818.4,1692Q2824.4,1692 2824.4,1686L2824.4,1494Q2824.4,1488 2830.4,1488L3205.866666666667,1488" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2952" y="1493" width="41.599999999999994" height="14" rx="3"/><text class="t" x="2972.8" y="1503.5" text-anchor="middle">meters</text>
+</g>
+<g class="e"><title>Meter ||--o{ MeterReading : readings</title>
+<path class="l" d="M3532.866666666667,1509L3588.2000000000003,1509Q3594.2000000000003,1509 3594.2000000000003,1515L3594.2000000000003,1739Q3594.2000000000003,1745 3600.2000000000003,1745L3912.2000000000003,1745" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="3735.8" y="1750" width="52.8" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="1760.5" text-anchor="middle">readings</text>
+</g>
+<g class="e"><title>Meter |o--o{ MaintenancePlan : triggers</title>
+<path class="l" d="M3532.866666666667,1467L3588.2000000000003,1467Q3594.2000000000003,1467 3594.2000000000003,1461L3594.2000000000003,1314Q3594.2000000000003,1308 3600.2000000000003,1308L3854.2000000000003,1308Q3860.2000000000003,1308 3860.2000000000003,1302L3860.2000000000003,659Q3860.2000000000003,653 3866.2000000000003,653L3912.2000000000003,653" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="3735.8" y="1313" width="52.8" height="14" rx="3"/><text class="t" x="3762.2000000000003" y="1323.5" text-anchor="middle">triggers</text>
+</g>
+<g class="e"><title>Party |o--o{ Licence : publisher</title>
+<path class="l" d="M954.85,1301L1002.6,1301Q1008.6,1301 1008.6,1295L1008.6,636Q1008.6,630 1014.6,630L1381.3333333333333,630" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1144.6" y="635" width="58.4" height="14" rx="3"/><text class="t" x="1173.8" y="645.5" text-anchor="middle">publisher</text>
+</g>
+<g class="e"><title>AssetType |o--o{ Licence : software type</title>
+<path class="l" d="M956.6,976L1016.6,976Q1022.6,976 1022.6,970L1022.6,745Q1022.6,739 1028.6,739L1235,739Q1241,739 1241,733L1241,696Q1241,690 1247,690L1381.3333333333333,690" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="1133.3999999999999" y="744" width="80.8" height="14" rx="3"/><text class="t" x="1173.8" y="754.5" text-anchor="middle">software type</text>
+</g>
+<g class="e"><title>Licence ||--o{ LicenceSeat : seats</title>
+<path class="l" d="M1584.3333333333333,660L2734.4,660Q2740.4,660 2740.4,654L2740.4,613Q2740.4,607 2746.4,607L3131.2000000000003,607" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="2388.9" y="665" width="36" height="14" rx="3"/><text class="t" x="2406.9" y="675.5" text-anchor="middle">seats</text>
+</g>
+<g class="e"><title>User |o--o{ LicenceSeat : assigned user</title>
+<path class="l" d="M1733,1079L1765,1079Q1771,1079 1771,1073L1771,700Q1771,694 1777,694L3059.2000000000003,694Q3065.2000000000003,694 3065.2000000000003,688L3065.2000000000003,648Q3065.2000000000003,642 3071.2000000000003,642L3131.2000000000003,642" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="2366.5" y="699" width="80.8" height="14" rx="3"/><text class="t" x="2406.9" y="709.5" text-anchor="middle">assigned user</text>
+</g>
+<g class="e"><title>Asset |o--o{ LicenceSeat : assigned device</title>
+<path class="l" d="M2646.4,1506L2734.4,1506Q2740.4,1506 2740.4,1500L2740.4,725Q2740.4,719 2746.4,719L3073.2000000000003,719Q3079.2000000000003,719 3079.2000000000003,713L3079.2000000000003,684Q3079.2000000000003,678 3085.2000000000003,678L3131.2000000000003,678" marker-start="url(#zone)" marker-end="url(#many)"/>
+<rect x="2926.8" y="724" width="92" height="14" rx="3"/><text class="t" x="2972.8" y="734.5" text-anchor="middle">assigned device</text>
+</g>
+<g><rect x="40" y="1452" width="150" height="40" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M40,1486V1458a6,6 0 0 1 6,-6H184a6,6 0 0 1 6,6V1486a6,6 0 0 1 -6,6H46a6,6 0 0 1 -6,-6Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="115" y="1477" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Organization</text>
+</g>
+<g><rect x="523.6" y="625" width="287" height="124" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M523.6,655V631a6,6 0 0 1 6,-6H804.6a6,6 0 0 1 6,6V655Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="667.1" y="645" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">AssetSequence</text>
+<text class="m" x="533.6" y="668" fill="#7a8296">uuid</text>
+<text class="m" x="585.2" y="668" fill="#1f2433" font-weight="700">organization_id</text>
+<text class="m" x="696.2" y="668" fill="#b45309" font-weight="700">PK</text>
+<text class="m" x="721.4000000000001" y="668" fill="#7a8296" font-style="italic">1:1 with org</text>
+<rect x="524.6" y="673" width="285" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="686" fill="#7a8296">string</text>
+<text class="m" x="585.2" y="686" fill="#1f2433">prefix</text>
+<text class="m" x="721.4000000000001" y="686" fill="#7a8296" font-style="italic">ASSET-</text>
+<text class="m" x="533.6" y="704" fill="#7a8296">string</text>
+<text class="m" x="585.2" y="704" fill="#1f2433">suffix</text>
+<rect x="524.6" y="709" width="285" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="722" fill="#7a8296">int</text>
+<text class="m" x="585.2" y="722" fill="#1f2433">padding</text>
+<text class="m" x="533.6" y="740" fill="#7a8296">int</text>
+<text class="m" x="585.2" y="740" fill="#1f2433">next_value</text>
+</g>
+<g><rect x="523.6" y="826" width="433" height="376" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M523.6,856V832a6,6 0 0 1 6,-6H950.6a6,6 0 0 1 6,6V856Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="740.1" y="846" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">AssetType</text>
+<text class="m" x="533.6" y="869" fill="#7a8296">uuid</text>
+<text class="m" x="585.2" y="869" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="775.4000000000001" y="869" fill="#b45309" font-weight="700">PK</text>
+<rect x="524.6" y="874" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="887" fill="#7a8296">uuid</text>
+<text class="m" x="585.2" y="887" fill="#1f2433">organization_id</text>
+<text class="m" x="775.4000000000001" y="887" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="800.6000000000001" y="887" fill="#7a8296" font-style="italic">NULL = global built-in</text>
+<text class="m" x="533.6" y="905" fill="#7a8296">string</text>
+<text class="m" x="585.2" y="905" fill="#1f2433">slug</text>
+<text class="m" x="800.6000000000001" y="905" fill="#7a8296" font-style="italic">key, unique per org</text>
+<rect x="524.6" y="910" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="923" fill="#7a8296">enum</text>
+<text class="m" x="585.2" y="923" fill="#1f2433">tracking_mode</text>
+<text class="m" x="800.6000000000001" y="923" fill="#7a8296" font-style="italic">single | quantity</text>
+<text class="m" x="533.6" y="941" fill="#7a8296">string</text>
+<text class="m" x="585.2" y="941" fill="#1f2433">name</text>
+<rect x="524.6" y="946" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="959" fill="#7a8296">text</text>
+<text class="m" x="585.2" y="959" fill="#1f2433">description</text>
+<text class="m" x="533.6" y="977" fill="#7a8296">string</text>
+<text class="m" x="585.2" y="977" fill="#1f2433">icon</text>
+<rect x="524.6" y="982" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="995" fill="#7a8296">string</text>
+<text class="m" x="585.2" y="995" fill="#1f2433">color</text>
+<text class="m" x="533.6" y="1013" fill="#7a8296">bool</text>
+<text class="m" x="585.2" y="1013" fill="#1f2433">is_builtin</text>
+<rect x="524.6" y="1018" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="1031" fill="#7a8296">uuid</text>
+<text class="m" x="585.2" y="1031" fill="#1f2433">forked_from_id</text>
+<text class="m" x="775.4000000000001" y="1031" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="533.6" y="1049" fill="#7a8296">bool</text>
+<text class="m" x="585.2" y="1049" fill="#1f2433">is_archived</text>
+<rect x="524.6" y="1054" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="1067" fill="#7a8296">json</text>
+<text class="m" x="585.2" y="1067" fill="#1f2433">standard_fields</text>
+<text class="m" x="533.6" y="1085" fill="#7a8296">json</text>
+<text class="m" x="585.2" y="1085" fill="#1f2433">attribute_schema</text>
+<rect x="524.6" y="1090" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="1103" fill="#7a8296">json</text>
+<text class="m" x="585.2" y="1103" fill="#1f2433">lifecycle_states</text>
+<text class="m" x="533.6" y="1121" fill="#7a8296">bool</text>
+<text class="m" x="585.2" y="1121" fill="#1f2433">allows_photo</text>
+<rect x="524.6" y="1126" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="1139" fill="#7a8296">bool</text>
+<text class="m" x="585.2" y="1139" fill="#1f2433">allows_invoice</text>
+<text class="m" x="533.6" y="1157" fill="#7a8296">int</text>
+<text class="m" x="585.2" y="1157" fill="#1f2433">max_concurrent_assignees</text>
+<rect x="524.6" y="1162" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="533.6" y="1175" fill="#7a8296">enum</text>
+<text class="m" x="585.2" y="1175" fill="#1f2433">default_depreciation_method</text>
+<text class="m" x="800.6000000000001" y="1175" fill="#c2410c" font-style="italic">NEW</text>
+<text class="m" x="533.6" y="1193" fill="#7a8296">int</text>
+<text class="m" x="585.2" y="1193" fill="#1f2433">useful_life_months</text>
+<text class="m" x="800.6000000000001" y="1193" fill="#c2410c" font-style="italic">NEW</text>
+</g>
+<g><rect x="618.8000000000001" y="2463" width="314" height="232" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M618.8000000000001,2493V2469a6,6 0 0 1 6,-6H926.8000000000001a6,6 0 0 1 6,6V2493Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="775.8000000000001" y="2483" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Site</text>
+<text class="m" x="628.8000000000001" y="2506" fill="#7a8296">uuid</text>
+<text class="m" x="680.4000000000001" y="2506" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="791.4000000000001" y="2506" fill="#b45309" font-weight="700">PK</text>
+<rect x="619.8000000000001" y="2511" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="628.8000000000001" y="2524" fill="#7a8296">uuid</text>
+<text class="m" x="680.4000000000001" y="2524" fill="#1f2433">organization_id</text>
+<text class="m" x="791.4000000000001" y="2524" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="628.8000000000001" y="2542" fill="#7a8296">uuid</text>
+<text class="m" x="680.4000000000001" y="2542" fill="#1f2433">parent_id</text>
+<text class="m" x="791.4000000000001" y="2542" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="816.6000000000001" y="2542" fill="#c2410c" font-style="italic">NEW: region</text>
+<rect x="619.8000000000001" y="2547" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="628.8000000000001" y="2560" fill="#7a8296">string</text>
+<text class="m" x="680.4000000000001" y="2560" fill="#1f2433">name</text>
+<text class="m" x="816.6000000000001" y="2560" fill="#7a8296" font-style="italic">unique per org</text>
+<text class="m" x="628.8000000000001" y="2578" fill="#7a8296">enum</text>
+<text class="m" x="680.4000000000001" y="2578" fill="#1f2433">type</text>
+<text class="m" x="816.6000000000001" y="2578" fill="#7a8296" font-style="italic">site | warehouse</text>
+<rect x="619.8000000000001" y="2583" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="628.8000000000001" y="2596" fill="#7a8296">string</text>
+<text class="m" x="680.4000000000001" y="2596" fill="#1f2433">code</text>
+<text class="m" x="628.8000000000001" y="2614" fill="#7a8296">string</text>
+<text class="m" x="680.4000000000001" y="2614" fill="#1f2433">address</text>
+<rect x="619.8000000000001" y="2619" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="628.8000000000001" y="2632" fill="#7a8296">string</text>
+<text class="m" x="680.4000000000001" y="2632" fill="#1f2433">city</text>
+<text class="m" x="628.8000000000001" y="2650" fill="#7a8296">string</text>
+<text class="m" x="680.4000000000001" y="2650" fill="#1f2433">country</text>
+<rect x="619.8000000000001" y="2655" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="628.8000000000001" y="2668" fill="#7a8296">text</text>
+<text class="m" x="680.4000000000001" y="2668" fill="#1f2433">notes</text>
+<text class="m" x="628.8000000000001" y="2686" fill="#7a8296">bool</text>
+<text class="m" x="680.4000000000001" y="2686" fill="#1f2433">is_active</text>
+</g>
+<g><rect x="2167.4" y="1351" width="479" height="682" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M2167.4,1381V1357a6,6 0 0 1 6,-6H2640.4a6,6 0 0 1 6,6V1381Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="2406.9" y="1371" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Asset</text>
+<text class="m" x="2177.4" y="1394" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1394" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="2419.2" y="1394" fill="#b45309" font-weight="700">PK</text>
+<rect x="2168.4" y="1399" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1412" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1412" fill="#1f2433">organization_id</text>
+<text class="m" x="2419.2" y="1412" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2177.4" y="1430" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1430" fill="#1f2433">asset_type_id</text>
+<text class="m" x="2419.2" y="1430" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="2168.4" y="1435" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1448" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1448" fill="#1f2433">asset_model_id</text>
+<text class="m" x="2419.2" y="1448" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2444.3999999999996" y="1448" fill="#c2410c" font-style="italic">NEW</text>
+<text class="m" x="2177.4" y="1466" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1466" fill="#1f2433">project_id</text>
+<text class="m" x="2419.2" y="1466" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="2168.4" y="1471" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1484" fill="#7a8296">string</text>
+<text class="m" x="2235.6" y="1484" fill="#1f2433">human_id</text>
+<text class="m" x="2444.3999999999996" y="1484" fill="#7a8296" font-style="italic">unique per org</text>
+<text class="m" x="2177.4" y="1502" fill="#7a8296">int</text>
+<text class="m" x="2235.6" y="1502" fill="#1f2433">sequence_number</text>
+<rect x="2168.4" y="1507" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1520" fill="#7a8296">string</text>
+<text class="m" x="2235.6" y="1520" fill="#1f2433">name</text>
+<text class="m" x="2177.4" y="1538" fill="#7a8296">string</text>
+<text class="m" x="2235.6" y="1538" fill="#1f2433">serial_number</text>
+<rect x="2168.4" y="1543" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1556" fill="#7a8296">string</text>
+<text class="m" x="2235.6" y="1556" fill="#1f2433">barcode</text>
+<text class="m" x="2444.3999999999996" y="1556" fill="#c2410c" font-style="italic">NEW: barcode / QR / RFID</text>
+<text class="m" x="2177.4" y="1574" fill="#7a8296">string</text>
+<text class="m" x="2235.6" y="1574" fill="#1f2433">category</text>
+<rect x="2168.4" y="1579" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1592" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1592" fill="#1f2433">current_site_id</text>
+<text class="m" x="2419.2" y="1592" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2177.4" y="1610" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1610" fill="#1f2433">location_id</text>
+<text class="m" x="2419.2" y="1610" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2444.3999999999996" y="1610" fill="#c2410c" font-style="italic">NEW: replaces location string</text>
+<rect x="2168.4" y="1615" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1628" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1628" fill="#1f2433">parent_id</text>
+<text class="m" x="2419.2" y="1628" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2177.4" y="1646" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1646" fill="#1f2433">vendor_id</text>
+<text class="m" x="2419.2" y="1646" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2444.3999999999996" y="1646" fill="#c2410c" font-style="italic">NEW</text>
+<rect x="2168.4" y="1651" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1664" fill="#7a8296">uuid</text>
+<text class="m" x="2235.6" y="1664" fill="#1f2433">department_id</text>
+<text class="m" x="2419.2" y="1664" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2444.3999999999996" y="1664" fill="#c2410c" font-style="italic">NEW</text>
+<text class="m" x="2177.4" y="1682" fill="#7a8296">enum</text>
+<text class="m" x="2235.6" y="1682" fill="#1f2433">status</text>
+<text class="m" x="2444.3999999999996" y="1682" fill="#c2410c" font-style="italic">NEW: was free string</text>
+<rect x="2168.4" y="1687" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1700" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1700" fill="#1f2433">purchase_value</text>
+<text class="m" x="2177.4" y="1718" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1718" fill="#1f2433">current_value</text>
+<text class="m" x="2444.3999999999996" y="1718" fill="#c2410c" font-style="italic">NEW: from DepreciationEntry</text>
+<rect x="2168.4" y="1723" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1736" fill="#7a8296">string</text>
+<text class="m" x="2235.6" y="1736" fill="#1f2433">currency</text>
+<text class="m" x="2444.3999999999996" y="1736" fill="#7a8296" font-style="italic">default USD</text>
+<text class="m" x="2177.4" y="1754" fill="#7a8296">date</text>
+<text class="m" x="2235.6" y="1754" fill="#1f2433">acquired_on</text>
+<rect x="2168.4" y="1759" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1772" fill="#7a8296">date</text>
+<text class="m" x="2235.6" y="1772" fill="#1f2433">warranty_until</text>
+<text class="m" x="2444.3999999999996" y="1772" fill="#c2410c" font-style="italic">NEW</text>
+<text class="m" x="2177.4" y="1790" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1790" fill="#1f2433">tax_rate</text>
+<rect x="2168.4" y="1795" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1808" fill="#7a8296">enum</text>
+<text class="m" x="2235.6" y="1808" fill="#1f2433">tax_type</text>
+<text class="m" x="2444.3999999999996" y="1808" fill="#7a8296" font-style="italic">CGST_SGST | IGST | NONE</text>
+<text class="m" x="2177.4" y="1826" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1826" fill="#1f2433">transport_charges</text>
+<rect x="2168.4" y="1831" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1844" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1844" fill="#1f2433">other_charges</text>
+<text class="m" x="2177.4" y="1862" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1862" fill="#1f2433">landed_cost</text>
+<text class="m" x="2444.3999999999996" y="1862" fill="#7a8296" font-style="italic">computed</text>
+<rect x="2168.4" y="1867" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1880" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1880" fill="#1f2433">quantity_on_hand</text>
+<text class="m" x="2444.3999999999996" y="1880" fill="#7a8296" font-style="italic">cache of StockBalance</text>
+<text class="m" x="2177.4" y="1898" fill="#7a8296">string</text>
+<text class="m" x="2235.6" y="1898" fill="#1f2433">unit</text>
+<rect x="2168.4" y="1903" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1916" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1916" fill="#1f2433">reorder_point</text>
+<text class="m" x="2177.4" y="1934" fill="#7a8296">decimal</text>
+<text class="m" x="2235.6" y="1934" fill="#1f2433">unit_cost</text>
+<rect x="2168.4" y="1939" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1952" fill="#7a8296">json</text>
+<text class="m" x="2235.6" y="1952" fill="#1f2433">custom_attributes</text>
+<text class="m" x="2177.4" y="1970" fill="#7a8296">json</text>
+<text class="m" x="2235.6" y="1970" fill="#1f2433">acknowledged_hidden_fields</text>
+<rect x="2168.4" y="1975" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1988" fill="#7a8296">int</text>
+<text class="m" x="2235.6" y="1988" fill="#1f2433">assigned_to_id</text>
+<text class="m" x="2419.2" y="1988" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2177.4" y="2006" fill="#7a8296">bool</text>
+<text class="m" x="2235.6" y="2006" fill="#1f2433">is_active</text>
+<text class="m" x="2444.3999999999996" y="2006" fill="#7a8296" font-style="italic">soft delete</text>
+<rect x="2168.4" y="2011" width="477" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="2024" fill="#7a8296">bool</text>
+<text class="m" x="2235.6" y="2024" fill="#1f2433">is_catalog_part</text>
+</g>
+<g><rect x="2167.4" y="1113" width="373" height="160" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M2167.4,1143V1119a6,6 0 0 1 6,-6H2534.4a6,6 0 0 1 6,6V1143Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="2353.9" y="1133" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">AssetManagerGrant</text>
+<text class="m" x="2177.4" y="1156" fill="#7a8296">uuid</text>
+<text class="m" x="2242.2000000000003" y="1156" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="2353.2000000000003" y="1156" fill="#b45309" font-weight="700">PK</text>
+<rect x="2168.4" y="1161" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1174" fill="#7a8296">uuid</text>
+<text class="m" x="2242.2000000000003" y="1174" fill="#1f2433">organization_id</text>
+<text class="m" x="2353.2000000000003" y="1174" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2177.4" y="1192" fill="#7a8296">int</text>
+<text class="m" x="2242.2000000000003" y="1192" fill="#1f2433">user_id</text>
+<text class="m" x="2353.2000000000003" y="1192" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2378.4" y="1192" fill="#7a8296" font-style="italic">one active per org+user</text>
+<rect x="2168.4" y="1197" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1210" fill="#7a8296">int</text>
+<text class="m" x="2242.2000000000003" y="1210" fill="#1f2433">granted_by_id</text>
+<text class="m" x="2353.2000000000003" y="1210" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2177.4" y="1228" fill="#7a8296">datetime</text>
+<text class="m" x="2242.2000000000003" y="1228" fill="#1f2433">granted_at</text>
+<rect x="2168.4" y="1233" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="1246" fill="#7a8296">datetime</text>
+<text class="m" x="2242.2000000000003" y="1246" fill="#1f2433">revoked_at</text>
+<text class="m" x="2378.4" y="1246" fill="#7a8296" font-style="italic">NULL = active</text>
+<text class="m" x="2177.4" y="1264" fill="#7a8296">int</text>
+<text class="m" x="2242.2000000000003" y="1264" fill="#1f2433">revoked_by_id</text>
+<text class="m" x="2353.2000000000003" y="1264" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="2167.4" y="827" width="196" height="124" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M2167.4,857V833a6,6 0 0 1 6,-6H2357.4a6,6 0 0 1 6,6V857Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="2265.4" y="847" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">SavedAssetFilter</text>
+<text class="m" x="2177.4" y="870" fill="#7a8296">uuid</text>
+<text class="m" x="2229" y="870" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="2340" y="870" fill="#b45309" font-weight="700">PK</text>
+<rect x="2168.4" y="875" width="194" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="888" fill="#7a8296">int</text>
+<text class="m" x="2229" y="888" fill="#1f2433">user_id</text>
+<text class="m" x="2340" y="888" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2177.4" y="906" fill="#7a8296">uuid</text>
+<text class="m" x="2229" y="906" fill="#1f2433">organization_id</text>
+<text class="m" x="2340" y="906" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="2168.4" y="911" width="194" height="18" fill="#f6f7fb"/>
+<text class="m" x="2177.4" y="924" fill="#7a8296">string</text>
+<text class="m" x="2229" y="924" fill="#1f2433">name</text>
+<text class="m" x="2177.4" y="942" fill="#7a8296">json</text>
+<text class="m" x="2229" y="942" fill="#1f2433">conditions</text>
+</g>
+<g><rect x="1583" y="1069" width="150" height="40" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M1583,1103V1075a6,6 0 0 1 6,-6H1727a6,6 0 0 1 6,6V1103a6,6 0 0 1 -6,6H1589a6,6 0 0 1 -6,-6Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="1658" y="1094" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">User</text>
+</g>
+<g><rect x="1583" y="2186" width="150" height="40" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M1583,2220V2192a6,6 0 0 1 6,-6H1727a6,6 0 0 1 6,6V2220a6,6 0 0 1 -6,6H1589a6,6 0 0 1 -6,-6Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="1658" y="2211" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Project</text>
+</g>
+<g><rect x="3131.2000000000003" y="1986" width="221" height="160" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M3131.2000000000003,2016V1992a6,6 0 0 1 6,-6H3346.2000000000003a6,6 0 0 1 6,6V2016Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="3241.7000000000003" y="2006" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">AssetImage</text>
+<text class="m" x="3141.2000000000003" y="2029" fill="#7a8296">uuid</text>
+<text class="m" x="3192.8" y="2029" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3297.2000000000003" y="2029" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="2034" width="219" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="2047" fill="#7a8296">uuid</text>
+<text class="m" x="3192.8" y="2047" fill="#1f2433">asset_id</text>
+<text class="m" x="3297.2000000000003" y="2047" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3322.4" y="2047" fill="#7a8296" font-style="italic">1:1</text>
+<text class="m" x="3141.2000000000003" y="2065" fill="#7a8296">binary</text>
+<text class="m" x="3192.8" y="2065" fill="#1f2433">data</text>
+<rect x="3132.2000000000003" y="2070" width="219" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="2083" fill="#7a8296">string</text>
+<text class="m" x="3192.8" y="2083" fill="#1f2433">file_name</text>
+<text class="m" x="3141.2000000000003" y="2101" fill="#7a8296">string</text>
+<text class="m" x="3192.8" y="2101" fill="#1f2433">content_type</text>
+<rect x="3132.2000000000003" y="2106" width="219" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="2119" fill="#7a8296">int</text>
+<text class="m" x="3192.8" y="2119" fill="#1f2433">size</text>
+<text class="m" x="3141.2000000000003" y="2137" fill="#7a8296">int</text>
+<text class="m" x="3192.8" y="2137" fill="#1f2433">uploaded_by_id</text>
+<text class="m" x="3297.2000000000003" y="2137" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="3131.2000000000003" y="833" width="406" height="250" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M3131.2000000000003,863V839a6,6 0 0 1 6,-6H3531.2000000000003a6,6 0 0 1 6,6V863Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="3334.2000000000003" y="853" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">AssetInvoice</text>
+<text class="m" x="3141.2000000000003" y="876" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="876" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3303.8" y="876" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="881" width="404" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="894" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="894" fill="#1f2433">asset_id</text>
+<text class="m" x="3303.8" y="894" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3329" y="894" fill="#c2410c" font-style="italic">NEW: many per asset</text>
+<text class="m" x="3141.2000000000003" y="912" fill="#7a8296">binary</text>
+<text class="m" x="3199.4" y="912" fill="#1f2433">data</text>
+<rect x="3132.2000000000003" y="917" width="404" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="930" fill="#7a8296">string</text>
+<text class="m" x="3199.4" y="930" fill="#1f2433">file_name</text>
+<text class="m" x="3141.2000000000003" y="948" fill="#7a8296">string</text>
+<text class="m" x="3199.4" y="948" fill="#1f2433">content_type</text>
+<rect x="3132.2000000000003" y="953" width="404" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="966" fill="#7a8296">int</text>
+<text class="m" x="3199.4" y="966" fill="#1f2433">size</text>
+<text class="m" x="3141.2000000000003" y="984" fill="#7a8296">string</text>
+<text class="m" x="3199.4" y="984" fill="#1f2433">invoice_number</text>
+<rect x="3132.2000000000003" y="989" width="404" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1002" fill="#7a8296">date</text>
+<text class="m" x="3199.4" y="1002" fill="#1f2433">invoice_date</text>
+<text class="m" x="3141.2000000000003" y="1020" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="1020" fill="#1f2433">vendor_id</text>
+<text class="m" x="3303.8" y="1020" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3329" y="1020" fill="#c2410c" font-style="italic">NEW: replaces free-text vendor</text>
+<rect x="3132.2000000000003" y="1025" width="404" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1038" fill="#7a8296">decimal</text>
+<text class="m" x="3199.4" y="1038" fill="#1f2433">amount</text>
+<text class="m" x="3141.2000000000003" y="1056" fill="#7a8296">string</text>
+<text class="m" x="3199.4" y="1056" fill="#1f2433">currency</text>
+<rect x="3132.2000000000003" y="1061" width="404" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1074" fill="#7a8296">int</text>
+<text class="m" x="3199.4" y="1074" fill="#1f2433">uploaded_by_id</text>
+<text class="m" x="3303.8" y="1074" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="5374.000000000001" y="2414" width="459" height="286" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M5374.000000000001,2444V2420a6,6 0 0 1 6,-6H5827.000000000001a6,6 0 0 1 6,6V2444Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="5603.500000000001" y="2434" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">AssetAssignment</text>
+<text class="m" x="5384.000000000001" y="2457" fill="#7a8296">uuid</text>
+<text class="m" x="5448.800000000001" y="2457" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="5592.800000000001" y="2457" fill="#b45309" font-weight="700">PK</text>
+<rect x="5375.000000000001" y="2462" width="457" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="2475" fill="#7a8296">uuid</text>
+<text class="m" x="5448.800000000001" y="2475" fill="#1f2433">asset_id</text>
+<text class="m" x="5592.800000000001" y="2475" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="5384.000000000001" y="2493" fill="#7a8296">enum</text>
+<text class="m" x="5448.800000000001" y="2493" fill="#1f2433">assignee_type</text>
+<text class="m" x="5618.000000000001" y="2493" fill="#c2410c" font-style="italic">NEW: user | department | site |</text>
+<text class="m" x="5618.000000000001" y="2511" fill="#c2410c" font-style="italic">asset</text>
+<rect x="5375.000000000001" y="2516" width="457" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="2529" fill="#7a8296">int</text>
+<text class="m" x="5448.800000000001" y="2529" fill="#1f2433">assignee_id</text>
+<text class="m" x="5592.800000000001" y="2529" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="5618.000000000001" y="2529" fill="#7a8296" font-style="italic">one open row per person</text>
+<text class="m" x="5384.000000000001" y="2547" fill="#7a8296">uuid</text>
+<text class="m" x="5448.800000000001" y="2547" fill="#1f2433">department_id</text>
+<text class="m" x="5592.800000000001" y="2547" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="5618.000000000001" y="2547" fill="#c2410c" font-style="italic">NEW</text>
+<rect x="5375.000000000001" y="2552" width="457" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="2565" fill="#7a8296">uuid</text>
+<text class="m" x="5448.800000000001" y="2565" fill="#1f2433">task_id</text>
+<text class="m" x="5592.800000000001" y="2565" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="5384.000000000001" y="2583" fill="#7a8296">datetime</text>
+<text class="m" x="5448.800000000001" y="2583" fill="#1f2433">checked_out_at</text>
+<rect x="5375.000000000001" y="2588" width="457" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="2601" fill="#7a8296">datetime</text>
+<text class="m" x="5448.800000000001" y="2601" fill="#1f2433">checked_in_at</text>
+<text class="m" x="5618.000000000001" y="2601" fill="#7a8296" font-style="italic">NULL = open</text>
+<text class="m" x="5384.000000000001" y="2619" fill="#7a8296">decimal</text>
+<text class="m" x="5448.800000000001" y="2619" fill="#1f2433">quantity</text>
+<text class="m" x="5618.000000000001" y="2619" fill="#7a8296" font-style="italic">NULL for single items</text>
+<rect x="5375.000000000001" y="2624" width="457" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="2637" fill="#7a8296">uuid</text>
+<text class="m" x="5448.800000000001" y="2637" fill="#1f2433">movement_id</text>
+<text class="m" x="5592.800000000001" y="2637" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="5384.000000000001" y="2655" fill="#7a8296">uuid</text>
+<text class="m" x="5448.800000000001" y="2655" fill="#1f2433">returned_movement_id</text>
+<text class="m" x="5592.800000000001" y="2655" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="5375.000000000001" y="2660" width="457" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="2673" fill="#7a8296">text</text>
+<text class="m" x="5448.800000000001" y="2673" fill="#1f2433">notes</text>
+<text class="m" x="5384.000000000001" y="2691" fill="#7a8296">int</text>
+<text class="m" x="5448.800000000001" y="2691" fill="#1f2433">created_by_id</text>
+<text class="m" x="5592.800000000001" y="2691" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="3420.2000000000003" y="2651" width="150" height="40" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M3420.2000000000003,2685V2657a6,6 0 0 1 6,-6H3564.2000000000003a6,6 0 0 1 6,6V2685a6,6 0 0 1 -6,6H3426.2000000000003a6,6 0 0 1 -6,-6Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="3495.2000000000003" y="2676" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Task</text>
+</g>
+<g><rect x="4572.533333333334" y="242" width="426" height="232" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M4572.533333333334,272V248a6,6 0 0 1 6,-6H4992.533333333334a6,6 0 0 1 6,6V272Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="4785.533333333334" y="262" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">MaintenanceLog</text>
+<text class="m" x="4582.533333333334" y="285" fill="#7a8296">uuid</text>
+<text class="m" x="4647.333333333334" y="285" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4758.333333333334" y="285" fill="#b45309" font-weight="700">PK</text>
+<rect x="4573.533333333334" y="290" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="4582.533333333334" y="303" fill="#7a8296">uuid</text>
+<text class="m" x="4647.333333333334" y="303" fill="#1f2433">asset_id</text>
+<text class="m" x="4758.333333333334" y="303" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4582.533333333334" y="321" fill="#7a8296">uuid</text>
+<text class="m" x="4647.333333333334" y="321" fill="#1f2433">plan_id</text>
+<text class="m" x="4758.333333333334" y="321" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4783.533333333334" y="321" fill="#c2410c" font-style="italic">NEW</text>
+<rect x="4573.533333333334" y="326" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="4582.533333333334" y="339" fill="#7a8296">enum</text>
+<text class="m" x="4647.333333333334" y="339" fill="#1f2433">kind</text>
+<text class="m" x="4783.533333333334" y="339" fill="#7a8296" font-style="italic">scheduled | repair | inspection</text>
+<text class="m" x="4582.533333333334" y="357" fill="#7a8296">enum</text>
+<text class="m" x="4647.333333333334" y="357" fill="#1f2433">status</text>
+<text class="m" x="4783.533333333334" y="357" fill="#c2410c" font-style="italic">NEW: planned | done | cancelled</text>
+<rect x="4573.533333333334" y="362" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="4582.533333333334" y="375" fill="#7a8296">datetime</text>
+<text class="m" x="4647.333333333334" y="375" fill="#1f2433">performed_at</text>
+<text class="m" x="4582.533333333334" y="393" fill="#7a8296">int</text>
+<text class="m" x="4647.333333333334" y="393" fill="#1f2433">performed_by_id</text>
+<text class="m" x="4758.333333333334" y="393" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="4573.533333333334" y="398" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="4582.533333333334" y="411" fill="#7a8296">uuid</text>
+<text class="m" x="4647.333333333334" y="411" fill="#1f2433">vendor_id</text>
+<text class="m" x="4758.333333333334" y="411" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4783.533333333334" y="411" fill="#c2410c" font-style="italic">NEW: service provider</text>
+<text class="m" x="4582.533333333334" y="429" fill="#7a8296">decimal</text>
+<text class="m" x="4647.333333333334" y="429" fill="#1f2433">cost</text>
+<rect x="4573.533333333334" y="434" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="4582.533333333334" y="447" fill="#7a8296">date</text>
+<text class="m" x="4647.333333333334" y="447" fill="#1f2433">next_due</text>
+<text class="m" x="4582.533333333334" y="465" fill="#7a8296">text</text>
+<text class="m" x="4647.333333333334" y="465" fill="#1f2433">notes</text>
+</g>
+<g><rect x="4557.200000000001" y="2959" width="472" height="394" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M4557.200000000001,2989V2965a6,6 0 0 1 6,-6H5023.200000000001a6,6 0 0 1 6,6V2989Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="4793.200000000001" y="2979" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">StockMovement</text>
+<text class="m" x="4567.200000000001" y="3002" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3002" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4776.000000000001" y="3002" fill="#b45309" font-weight="700">PK</text>
+<rect x="4558.200000000001" y="3007" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3020" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3020" fill="#1f2433">asset_id</text>
+<text class="m" x="4776.000000000001" y="3020" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4567.200000000001" y="3038" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3038" fill="#1f2433">location_id</text>
+<text class="m" x="4776.000000000001" y="3038" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4801.200000000001" y="3038" fill="#c2410c" font-style="italic">NEW</text>
+<rect x="4558.200000000001" y="3043" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3056" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3056" fill="#1f2433">lot_id</text>
+<text class="m" x="4776.000000000001" y="3056" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4801.200000000001" y="3056" fill="#c2410c" font-style="italic">NEW</text>
+<text class="m" x="4567.200000000001" y="3074" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3074" fill="#1f2433">transfer_id</text>
+<text class="m" x="4776.000000000001" y="3074" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4801.200000000001" y="3074" fill="#c2410c" font-style="italic">NEW</text>
+<rect x="4558.200000000001" y="3079" width="470" height="54" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3092" fill="#7a8296">enum</text>
+<text class="m" x="4632.000000000001" y="3092" fill="#1f2433">kind</text>
+<text class="m" x="4801.200000000001" y="3092" fill="#7a8296" font-style="italic">receive | consume | adjust | NEW:</text>
+<text class="m" x="4801.200000000001" y="3110" fill="#7a8296" font-style="italic">transfer_in | transfer_out |</text>
+<text class="m" x="4801.200000000001" y="3128" fill="#7a8296" font-style="italic">return</text>
+<text class="m" x="4567.200000000001" y="3146" fill="#7a8296">decimal</text>
+<text class="m" x="4632.000000000001" y="3146" fill="#1f2433">quantity_delta</text>
+<text class="m" x="4801.200000000001" y="3146" fill="#7a8296" font-style="italic">signed</text>
+<rect x="4558.200000000001" y="3151" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3164" fill="#7a8296">decimal</text>
+<text class="m" x="4632.000000000001" y="3164" fill="#1f2433">unit_cost_at_receipt</text>
+<text class="m" x="4567.200000000001" y="3182" fill="#7a8296">text</text>
+<text class="m" x="4632.000000000001" y="3182" fill="#1f2433">reason</text>
+<rect x="4558.200000000001" y="3187" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3200" fill="#7a8296">bool</text>
+<text class="m" x="4632.000000000001" y="3200" fill="#1f2433">is_opening</text>
+<text class="m" x="4567.200000000001" y="3218" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3218" fill="#1f2433">project_id</text>
+<text class="m" x="4776.000000000001" y="3218" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="4558.200000000001" y="3223" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3236" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3236" fill="#1f2433">task_id</text>
+<text class="m" x="4776.000000000001" y="3236" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4567.200000000001" y="3254" fill="#7a8296">uuid</text>
+<text class="m" x="4632.000000000001" y="3254" fill="#1f2433">build_id</text>
+<text class="m" x="4776.000000000001" y="3254" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="4558.200000000001" y="3259" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3272" fill="#7a8296">int</text>
+<text class="m" x="4632.000000000001" y="3272" fill="#1f2433">issued_to_id</text>
+<text class="m" x="4776.000000000001" y="3272" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4567.200000000001" y="3290" fill="#7a8296">int</text>
+<text class="m" x="4632.000000000001" y="3290" fill="#1f2433">performed_by_id</text>
+<text class="m" x="4776.000000000001" y="3290" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="4558.200000000001" y="3295" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3308" fill="#7a8296">string</text>
+<text class="m" x="4632.000000000001" y="3308" fill="#1f2433">source_kind</text>
+<text class="m" x="4801.200000000001" y="3308" fill="#7a8296" font-style="italic">procurement / inventory doc type</text>
+<text class="m" x="4567.200000000001" y="3326" fill="#7a8296">string</text>
+<text class="m" x="4632.000000000001" y="3326" fill="#1f2433">source_id</text>
+<text class="m" x="4801.200000000001" y="3326" fill="#7a8296" font-style="italic">doc line id, e.g. GRN line</text>
+<rect x="4558.200000000001" y="3331" width="470" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="3344" fill="#7a8296">datetime</text>
+<text class="m" x="4632.000000000001" y="3344" fill="#1f2433">created_at</text>
+<text class="m" x="4801.200000000001" y="3344" fill="#7a8296" font-style="italic">append-only</text>
+</g>
+<g><rect x="3161.866666666667" y="2406" width="393" height="196" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M3161.866666666667,2436V2412a6,6 0 0 1 6,-6H3548.866666666667a6,6 0 0 1 6,6V2436Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="3358.366666666667" y="2426" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Bom</text>
+<text class="m" x="3171.866666666667" y="2449" fill="#7a8296">uuid</text>
+<text class="m" x="3236.666666666667" y="2449" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3341.066666666667" y="2449" fill="#b45309" font-weight="700">PK</text>
+<rect x="3162.866666666667" y="2454" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="3171.866666666667" y="2467" fill="#7a8296">uuid</text>
+<text class="m" x="3236.666666666667" y="2467" fill="#1f2433">asset_id</text>
+<text class="m" x="3341.066666666667" y="2467" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3366.266666666667" y="2467" fill="#7a8296" font-style="italic">the board</text>
+<text class="m" x="3171.866666666667" y="2485" fill="#7a8296">string</text>
+<text class="m" x="3236.666666666667" y="2485" fill="#1f2433">name</text>
+<rect x="3162.866666666667" y="2490" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="3171.866666666667" y="2503" fill="#7a8296">string</text>
+<text class="m" x="3236.666666666667" y="2503" fill="#1f2433">version</text>
+<text class="m" x="3366.266666666667" y="2503" fill="#7a8296" font-style="italic">unique per asset</text>
+<text class="m" x="3171.866666666667" y="2521" fill="#7a8296">text</text>
+<text class="m" x="3236.666666666667" y="2521" fill="#1f2433">notes</text>
+<rect x="3162.866666666667" y="2526" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="3171.866666666667" y="2539" fill="#7a8296">enum</text>
+<text class="m" x="3236.666666666667" y="2539" fill="#1f2433">status</text>
+<text class="m" x="3366.266666666667" y="2539" fill="#7a8296" font-style="italic">draft | released | obsolete</text>
+<text class="m" x="3171.866666666667" y="2557" fill="#7a8296">datetime</text>
+<text class="m" x="3236.666666666667" y="2557" fill="#1f2433">released_at</text>
+<rect x="3162.866666666667" y="2562" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="3171.866666666667" y="2575" fill="#7a8296">int</text>
+<text class="m" x="3236.666666666667" y="2575" fill="#1f2433">released_by_id</text>
+<text class="m" x="3341.066666666667" y="2575" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3171.866666666667" y="2593" fill="#7a8296">bool</text>
+<text class="m" x="3236.666666666667" y="2593" fill="#1f2433">is_active</text>
+</g>
+<g><rect x="3920.866666666667" y="1455" width="347" height="178" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M3920.866666666667,1485V1461a6,6 0 0 1 6,-6H4261.866666666667a6,6 0 0 1 6,6V1485Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="4094.366666666667" y="1475" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">BomLine</text>
+<text class="m" x="3930.866666666667" y="1498" fill="#7a8296">uuid</text>
+<text class="m" x="3989.0666666666666" y="1498" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4139.666666666667" y="1498" fill="#b45309" font-weight="700">PK</text>
+<rect x="3921.866666666667" y="1503" width="345" height="18" fill="#f6f7fb"/>
+<text class="m" x="3930.866666666667" y="1516" fill="#7a8296">uuid</text>
+<text class="m" x="3989.0666666666666" y="1516" fill="#1f2433">bom_id</text>
+<text class="m" x="4139.666666666667" y="1516" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3930.866666666667" y="1534" fill="#7a8296">uuid</text>
+<text class="m" x="3989.0666666666666" y="1534" fill="#1f2433">component_id</text>
+<text class="m" x="4139.666666666667" y="1534" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4164.866666666667" y="1534" fill="#7a8296" font-style="italic">unique per bom</text>
+<rect x="3921.866666666667" y="1539" width="345" height="18" fill="#f6f7fb"/>
+<text class="m" x="3930.866666666667" y="1552" fill="#7a8296">decimal</text>
+<text class="m" x="3989.0666666666666" y="1552" fill="#1f2433">quantity_per</text>
+<text class="m" x="3930.866666666667" y="1570" fill="#7a8296">text</text>
+<text class="m" x="3989.0666666666666" y="1570" fill="#1f2433">reference_designators</text>
+<rect x="3921.866666666667" y="1575" width="345" height="18" fill="#f6f7fb"/>
+<text class="m" x="3930.866666666667" y="1588" fill="#7a8296">int</text>
+<text class="m" x="3989.0666666666666" y="1588" fill="#1f2433">position</text>
+<text class="m" x="3930.866666666667" y="1606" fill="#7a8296">bool</text>
+<text class="m" x="3989.0666666666666" y="1606" fill="#1f2433">is_fitted</text>
+<text class="m" x="4164.866666666667" y="1606" fill="#7a8296" font-style="italic">false = DNP</text>
+<rect x="3921.866666666667" y="1611" width="345" height="18" fill="#f6f7fb"/>
+<text class="m" x="3930.866666666667" y="1624" fill="#7a8296">text</text>
+<text class="m" x="3989.0666666666666" y="1624" fill="#1f2433">notes</text>
+</g>
+<g><rect x="4557.200000000001" y="1411" width="190" height="142" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M4557.200000000001,1441V1417a6,6 0 0 1 6,-6H4741.200000000001a6,6 0 0 1 6,6V1441Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="4652.200000000001" y="1431" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">BomLineAlternate</text>
+<text class="m" x="4567.200000000001" y="1454" fill="#7a8296">uuid</text>
+<text class="m" x="4605.6" y="1454" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4723.200000000001" y="1454" fill="#b45309" font-weight="700">PK</text>
+<rect x="4558.200000000001" y="1459" width="188" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="1472" fill="#7a8296">uuid</text>
+<text class="m" x="4605.6" y="1472" fill="#1f2433">line_id</text>
+<text class="m" x="4723.200000000001" y="1472" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4567.200000000001" y="1490" fill="#7a8296">uuid</text>
+<text class="m" x="4605.6" y="1490" fill="#1f2433">component_id</text>
+<text class="m" x="4723.200000000001" y="1490" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="4558.200000000001" y="1495" width="188" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="1508" fill="#7a8296">int</text>
+<text class="m" x="4605.6" y="1508" fill="#1f2433">preference_order</text>
+<text class="m" x="4567.200000000001" y="1526" fill="#7a8296">bool</text>
+<text class="m" x="4605.6" y="1526" fill="#1f2433">is_approved</text>
+<rect x="4558.200000000001" y="1531" width="188" height="18" fill="#f6f7fb"/>
+<text class="m" x="4567.200000000001" y="1544" fill="#7a8296">text</text>
+<text class="m" x="4605.6" y="1544" fill="#1f2433">notes</text>
+</g>
+<g><rect x="3949.7000000000003" y="2686" width="223" height="232" rx="6" fill="#fff" stroke="#9370DB" stroke-width="1.6"/>
+<path d="M3949.7000000000003,2716V2692a6,6 0 0 1 6,-6H4166.700000000001a6,6 0 0 1 6,6V2716Z" fill="#ECECFF" stroke="#9370DB" stroke-width="1.6"/>
+<text class="t" x="4061.2000000000003" y="2706" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">BomBuild</text>
+<text class="m" x="3959.7000000000003" y="2729" fill="#7a8296">uuid</text>
+<text class="m" x="4017.9" y="2729" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4148.7" y="2729" fill="#b45309" font-weight="700">PK</text>
+<rect x="3950.7000000000003" y="2734" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3959.7000000000003" y="2747" fill="#7a8296">uuid</text>
+<text class="m" x="4017.9" y="2747" fill="#1f2433">bom_id</text>
+<text class="m" x="4148.7" y="2747" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3959.7000000000003" y="2765" fill="#7a8296">decimal</text>
+<text class="m" x="4017.9" y="2765" fill="#1f2433">quantity_built</text>
+<rect x="3950.7000000000003" y="2770" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3959.7000000000003" y="2783" fill="#7a8296">uuid</text>
+<text class="m" x="4017.9" y="2783" fill="#1f2433">project_id</text>
+<text class="m" x="4148.7" y="2783" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3959.7000000000003" y="2801" fill="#7a8296">uuid</text>
+<text class="m" x="4017.9" y="2801" fill="#1f2433">task_id</text>
+<text class="m" x="4148.7" y="2801" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3950.7000000000003" y="2806" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3959.7000000000003" y="2819" fill="#7a8296">int</text>
+<text class="m" x="4017.9" y="2819" fill="#1f2433">performed_by_id</text>
+<text class="m" x="4148.7" y="2819" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3959.7000000000003" y="2837" fill="#7a8296">decimal</text>
+<text class="m" x="4017.9" y="2837" fill="#1f2433">unit_cost_snapshot</text>
+<rect x="3950.7000000000003" y="2842" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3959.7000000000003" y="2855" fill="#7a8296">decimal</text>
+<text class="m" x="4017.9" y="2855" fill="#1f2433">total_cost</text>
+<text class="m" x="3959.7000000000003" y="2873" fill="#7a8296">bool</text>
+<text class="m" x="4017.9" y="2873" fill="#1f2433">cost_is_complete</text>
+<rect x="3950.7000000000003" y="2878" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3959.7000000000003" y="2891" fill="#7a8296">string</text>
+<text class="m" x="4017.9" y="2891" fill="#1f2433">cost_currency</text>
+<text class="m" x="3959.7000000000003" y="2909" fill="#7a8296">text</text>
+<text class="m" x="4017.9" y="2909" fill="#1f2433">notes</text>
+</g>
+<g><rect x="1359.8" y="2476" width="360" height="160" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M1359.8,2506V2482a6,6 0 0 1 6,-6H1713.8a6,6 0 0 1 6,6V2506Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="1539.8" y="2496" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Location</text>
+<text class="m" x="1369.8" y="2519" fill="#7a8296">uuid</text>
+<text class="m" x="1421.3999999999999" y="2519" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="1532.3999999999999" y="2519" fill="#b45309" font-weight="700">PK</text>
+<rect x="1360.8" y="2524" width="358" height="18" fill="#f6f7fb"/>
+<text class="m" x="1369.8" y="2537" fill="#7a8296">uuid</text>
+<text class="m" x="1421.3999999999999" y="2537" fill="#1f2433">organization_id</text>
+<text class="m" x="1532.3999999999999" y="2537" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1369.8" y="2555" fill="#7a8296">uuid</text>
+<text class="m" x="1421.3999999999999" y="2555" fill="#1f2433">site_id</text>
+<text class="m" x="1532.3999999999999" y="2555" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="1360.8" y="2560" width="358" height="18" fill="#f6f7fb"/>
+<text class="m" x="1369.8" y="2573" fill="#7a8296">uuid</text>
+<text class="m" x="1421.3999999999999" y="2573" fill="#1f2433">parent_id</text>
+<text class="m" x="1532.3999999999999" y="2573" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1557.6" y="2573" fill="#7a8296" font-style="italic">self: zone &gt; rack &gt; bin</text>
+<text class="m" x="1369.8" y="2591" fill="#7a8296">string</text>
+<text class="m" x="1421.3999999999999" y="2591" fill="#1f2433">code</text>
+<text class="m" x="1557.6" y="2591" fill="#7a8296" font-style="italic">unique per site</text>
+<rect x="1360.8" y="2596" width="358" height="18" fill="#f6f7fb"/>
+<text class="m" x="1369.8" y="2609" fill="#7a8296">string</text>
+<text class="m" x="1421.3999999999999" y="2609" fill="#1f2433">name</text>
+<text class="m" x="1369.8" y="2627" fill="#7a8296">bool</text>
+<text class="m" x="1421.3999999999999" y="2627" fill="#1f2433">is_active</text>
+</g>
+<g><rect x="3912.2000000000003" y="1857" width="360" height="142" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M3912.2000000000003,1887V1863a6,6 0 0 1 6,-6H4266.200000000001a6,6 0 0 1 6,6V1887Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="4092.2000000000003" y="1877" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">StockBalance</text>
+<text class="m" x="3922.2000000000003" y="1900" fill="#7a8296">uuid</text>
+<text class="m" x="3987.0000000000005" y="1900" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4071.6000000000004" y="1900" fill="#b45309" font-weight="700">PK</text>
+<rect x="3913.2000000000003" y="1905" width="358" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="1918" fill="#7a8296">uuid</text>
+<text class="m" x="3987.0000000000005" y="1918" fill="#1f2433">asset_id</text>
+<text class="m" x="4071.6000000000004" y="1918" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3922.2000000000003" y="1936" fill="#7a8296">uuid</text>
+<text class="m" x="3987.0000000000005" y="1936" fill="#1f2433">location_id</text>
+<text class="m" x="4071.6000000000004" y="1936" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3913.2000000000003" y="1941" width="358" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="1954" fill="#7a8296">uuid</text>
+<text class="m" x="3987.0000000000005" y="1954" fill="#1f2433">lot_id</text>
+<text class="m" x="4071.6000000000004" y="1954" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4096.8" y="1954" fill="#7a8296" font-style="italic">nullable</text>
+<text class="m" x="3922.2000000000003" y="1972" fill="#7a8296">decimal</text>
+<text class="m" x="3987.0000000000005" y="1972" fill="#1f2433">quantity</text>
+<text class="m" x="4096.8" y="1972" fill="#7a8296" font-style="italic">sum of ledger</text>
+<rect x="3913.2000000000003" y="1977" width="358" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="1990" fill="#7a8296">datetime</text>
+<text class="m" x="3987.0000000000005" y="1990" fill="#1f2433">updated_at</text>
+<text class="m" x="4096.8" y="1990" fill="#7a8296" font-style="italic">unique asset+location+lot</text>
+</g>
+<g><rect x="3207.2000000000003" y="2196" width="287" height="160" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M3207.2000000000003,2226V2202a6,6 0 0 1 6,-6H3488.2000000000003a6,6 0 0 1 6,6V2226Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="3350.7000000000003" y="2216" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Lot</text>
+<text class="m" x="3217.2000000000003" y="2239" fill="#7a8296">uuid</text>
+<text class="m" x="3268.8" y="2239" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3353.4" y="2239" fill="#b45309" font-weight="700">PK</text>
+<rect x="3208.2000000000003" y="2244" width="285" height="18" fill="#f6f7fb"/>
+<text class="m" x="3217.2000000000003" y="2257" fill="#7a8296">uuid</text>
+<text class="m" x="3268.8" y="2257" fill="#1f2433">asset_id</text>
+<text class="m" x="3353.4" y="2257" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3217.2000000000003" y="2275" fill="#7a8296">string</text>
+<text class="m" x="3268.8" y="2275" fill="#1f2433">lot_number</text>
+<text class="m" x="3378.6" y="2275" fill="#7a8296" font-style="italic">unique per asset</text>
+<rect x="3208.2000000000003" y="2280" width="285" height="18" fill="#f6f7fb"/>
+<text class="m" x="3217.2000000000003" y="2293" fill="#7a8296">date</text>
+<text class="m" x="3268.8" y="2293" fill="#1f2433">mfg_date</text>
+<text class="m" x="3217.2000000000003" y="2311" fill="#7a8296">date</text>
+<text class="m" x="3268.8" y="2311" fill="#1f2433">expiry_date</text>
+<rect x="3208.2000000000003" y="2316" width="285" height="18" fill="#f6f7fb"/>
+<text class="m" x="3217.2000000000003" y="2329" fill="#7a8296">uuid</text>
+<text class="m" x="3268.8" y="2329" fill="#1f2433">vendor_id</text>
+<text class="m" x="3353.4" y="2329" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3217.2000000000003" y="2347" fill="#7a8296">text</text>
+<text class="m" x="3268.8" y="2347" fill="#1f2433">notes</text>
+</g>
+<g><rect x="1307" y="2976" width="426" height="214" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M1307,3006V2982a6,6 0 0 1 6,-6H1727a6,6 0 0 1 6,6V3006Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="1520" y="2996" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">StockTransfer</text>
+<text class="m" x="1317" y="3019" fill="#7a8296">uuid</text>
+<text class="m" x="1381.8" y="3019" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="1492.8" y="3019" fill="#b45309" font-weight="700">PK</text>
+<rect x="1308" y="3024" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="1317" y="3037" fill="#7a8296">uuid</text>
+<text class="m" x="1381.8" y="3037" fill="#1f2433">organization_id</text>
+<text class="m" x="1492.8" y="3037" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1317" y="3055" fill="#7a8296">string</text>
+<text class="m" x="1381.8" y="3055" fill="#1f2433">human_id</text>
+<rect x="1308" y="3060" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="1317" y="3073" fill="#7a8296">uuid</text>
+<text class="m" x="1381.8" y="3073" fill="#1f2433">from_site_id</text>
+<text class="m" x="1492.8" y="3073" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1317" y="3091" fill="#7a8296">uuid</text>
+<text class="m" x="1381.8" y="3091" fill="#1f2433">to_site_id</text>
+<text class="m" x="1492.8" y="3091" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="1308" y="3096" width="424" height="36" fill="#f6f7fb"/>
+<text class="m" x="1317" y="3109" fill="#7a8296">enum</text>
+<text class="m" x="1381.8" y="3109" fill="#1f2433">status</text>
+<text class="m" x="1518" y="3109" fill="#7a8296" font-style="italic">draft | in_transit | received |</text>
+<text class="m" x="1518" y="3127" fill="#7a8296" font-style="italic">cancelled</text>
+<text class="m" x="1317" y="3145" fill="#7a8296">datetime</text>
+<text class="m" x="1381.8" y="3145" fill="#1f2433">shipped_at</text>
+<rect x="1308" y="3150" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="1317" y="3163" fill="#7a8296">datetime</text>
+<text class="m" x="1381.8" y="3163" fill="#1f2433">received_at</text>
+<text class="m" x="1317" y="3181" fill="#7a8296">int</text>
+<text class="m" x="1381.8" y="3181" fill="#1f2433">created_by_id</text>
+<text class="m" x="1492.8" y="3181" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="3131.2000000000003" y="2740" width="209" height="160" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M3131.2000000000003,2770V2746a6,6 0 0 1 6,-6H3334.2000000000003a6,6 0 0 1 6,6V2770Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="3235.7000000000003" y="2760" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">StockTransferLine</text>
+<text class="m" x="3141.2000000000003" y="2783" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="2783" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3317" y="2783" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="2788" width="207" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="2801" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="2801" fill="#1f2433">transfer_id</text>
+<text class="m" x="3317" y="2801" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="2819" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="2819" fill="#1f2433">asset_id</text>
+<text class="m" x="3317" y="2819" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3132.2000000000003" y="2824" width="207" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="2837" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="2837" fill="#1f2433">lot_id</text>
+<text class="m" x="3317" y="2837" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="2855" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="2855" fill="#1f2433">from_location_id</text>
+<text class="m" x="3317" y="2855" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3132.2000000000003" y="2860" width="207" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="2873" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="2873" fill="#1f2433">to_location_id</text>
+<text class="m" x="3317" y="2873" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="2891" fill="#7a8296">decimal</text>
+<text class="m" x="3199.4" y="2891" fill="#1f2433">quantity</text>
+</g>
+<g><rect x="2196.0666666666666" y="2907" width="393" height="196" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M2196.0666666666666,2937V2913a6,6 0 0 1 6,-6H2583.0666666666666a6,6 0 0 1 6,6V2937Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="2392.5666666666666" y="2927" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">StockCount</text>
+<text class="m" x="2206.0666666666666" y="2950" fill="#7a8296">uuid</text>
+<text class="m" x="2270.866666666667" y="2950" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="2381.866666666667" y="2950" fill="#b45309" font-weight="700">PK</text>
+<rect x="2197.0666666666666" y="2955" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="2206.0666666666666" y="2968" fill="#7a8296">uuid</text>
+<text class="m" x="2270.866666666667" y="2968" fill="#1f2433">organization_id</text>
+<text class="m" x="2381.866666666667" y="2968" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2206.0666666666666" y="2986" fill="#7a8296">uuid</text>
+<text class="m" x="2270.866666666667" y="2986" fill="#1f2433">site_id</text>
+<text class="m" x="2381.866666666667" y="2986" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="2197.0666666666666" y="2991" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="2206.0666666666666" y="3004" fill="#7a8296">uuid</text>
+<text class="m" x="2270.866666666667" y="3004" fill="#1f2433">location_id</text>
+<text class="m" x="2381.866666666667" y="3004" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2407.0666666666666" y="3004" fill="#7a8296" font-style="italic">NULL = whole site</text>
+<text class="m" x="2206.0666666666666" y="3022" fill="#7a8296">enum</text>
+<text class="m" x="2270.866666666667" y="3022" fill="#1f2433">scope</text>
+<text class="m" x="2407.0666666666666" y="3022" fill="#7a8296" font-style="italic">full | cycle | asset_audit</text>
+<rect x="2197.0666666666666" y="3027" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="2206.0666666666666" y="3040" fill="#7a8296">enum</text>
+<text class="m" x="2270.866666666667" y="3040" fill="#1f2433">status</text>
+<text class="m" x="2407.0666666666666" y="3040" fill="#7a8296" font-style="italic">draft | counting | posted</text>
+<text class="m" x="2206.0666666666666" y="3058" fill="#7a8296">datetime</text>
+<text class="m" x="2270.866666666667" y="3058" fill="#1f2433">started_at</text>
+<rect x="2197.0666666666666" y="3063" width="391" height="18" fill="#f6f7fb"/>
+<text class="m" x="2206.0666666666666" y="3076" fill="#7a8296">datetime</text>
+<text class="m" x="2270.866666666667" y="3076" fill="#1f2433">posted_at</text>
+<text class="m" x="2206.0666666666666" y="3094" fill="#7a8296">int</text>
+<text class="m" x="2270.866666666667" y="3094" fill="#1f2433">counted_by_id</text>
+<text class="m" x="2381.866666666667" y="3094" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="3139.866666666667" y="3159" width="413" height="196" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M3139.866666666667,3189V3165a6,6 0 0 1 6,-6H3546.866666666667a6,6 0 0 1 6,6V3189Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="3346.366666666667" y="3179" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">StockCountLine</text>
+<text class="m" x="3149.866666666667" y="3202" fill="#7a8296">uuid</text>
+<text class="m" x="3208.0666666666666" y="3202" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3365.2666666666664" y="3202" fill="#b45309" font-weight="700">PK</text>
+<rect x="3140.866666666667" y="3207" width="411" height="18" fill="#f6f7fb"/>
+<text class="m" x="3149.866666666667" y="3220" fill="#7a8296">uuid</text>
+<text class="m" x="3208.0666666666666" y="3220" fill="#1f2433">count_id</text>
+<text class="m" x="3365.2666666666664" y="3220" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3149.866666666667" y="3238" fill="#7a8296">uuid</text>
+<text class="m" x="3208.0666666666666" y="3238" fill="#1f2433">asset_id</text>
+<text class="m" x="3365.2666666666664" y="3238" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3140.866666666667" y="3243" width="411" height="18" fill="#f6f7fb"/>
+<text class="m" x="3149.866666666667" y="3256" fill="#7a8296">uuid</text>
+<text class="m" x="3208.0666666666666" y="3256" fill="#1f2433">lot_id</text>
+<text class="m" x="3365.2666666666664" y="3256" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3149.866666666667" y="3274" fill="#7a8296">decimal</text>
+<text class="m" x="3208.0666666666666" y="3274" fill="#1f2433">expected_qty</text>
+<rect x="3140.866666666667" y="3279" width="411" height="18" fill="#f6f7fb"/>
+<text class="m" x="3149.866666666667" y="3292" fill="#7a8296">decimal</text>
+<text class="m" x="3208.0666666666666" y="3292" fill="#1f2433">counted_qty</text>
+<text class="m" x="3149.866666666667" y="3310" fill="#7a8296">decimal</text>
+<text class="m" x="3208.0666666666666" y="3310" fill="#1f2433">variance</text>
+<text class="m" x="3390.4666666666662" y="3310" fill="#7a8296" font-style="italic">computed</text>
+<rect x="3140.866666666667" y="3315" width="411" height="18" fill="#f6f7fb"/>
+<text class="m" x="3149.866666666667" y="3328" fill="#7a8296">enum</text>
+<text class="m" x="3208.0666666666666" y="3328" fill="#1f2433">found_status</text>
+<text class="m" x="3390.4666666666662" y="3328" fill="#7a8296" font-style="italic">found | missing | extra</text>
+<text class="m" x="3149.866666666667" y="3346" fill="#7a8296">uuid</text>
+<text class="m" x="3208.0666666666666" y="3346" fill="#1f2433">adjustment_movement_id</text>
+<text class="m" x="3365.2666666666664" y="3346" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="535.85" y="1252" width="419" height="196" rx="6" fill="#fff" stroke="#1F6FD1" stroke-width="1.6"/>
+<path d="M535.85,1282V1258a6,6 0 0 1 6,-6H948.85a6,6 0 0 1 6,6V1282Z" fill="#DCEBFB" stroke="#1F6FD1" stroke-width="1.6"/>
+<text class="t" x="745.35" y="1272" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Party</text>
+<text class="m" x="545.85" y="1295" fill="#7a8296">uuid</text>
+<text class="m" x="597.45" y="1295" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="708.45" y="1295" fill="#b45309" font-weight="700">PK</text>
+<rect x="536.85" y="1300" width="417" height="18" fill="#f6f7fb"/>
+<text class="m" x="545.85" y="1313" fill="#7a8296">uuid</text>
+<text class="m" x="597.45" y="1313" fill="#1f2433">organization_id</text>
+<text class="m" x="708.45" y="1313" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="545.85" y="1331" fill="#7a8296">enum</text>
+<text class="m" x="597.45" y="1331" fill="#1f2433">type</text>
+<text class="m" x="733.6500000000001" y="1331" fill="#7a8296" font-style="italic">vendor | manufacturer | customer</text>
+<rect x="536.85" y="1336" width="417" height="18" fill="#f6f7fb"/>
+<text class="m" x="545.85" y="1349" fill="#7a8296">string</text>
+<text class="m" x="597.45" y="1349" fill="#1f2433">name</text>
+<text class="m" x="545.85" y="1367" fill="#7a8296">string</text>
+<text class="m" x="597.45" y="1367" fill="#1f2433">gstin</text>
+<rect x="536.85" y="1372" width="417" height="18" fill="#f6f7fb"/>
+<text class="m" x="545.85" y="1385" fill="#7a8296">string</text>
+<text class="m" x="597.45" y="1385" fill="#1f2433">email</text>
+<text class="m" x="545.85" y="1403" fill="#7a8296">string</text>
+<text class="m" x="597.45" y="1403" fill="#1f2433">phone</text>
+<rect x="536.85" y="1408" width="417" height="18" fill="#f6f7fb"/>
+<text class="m" x="545.85" y="1421" fill="#7a8296">text</text>
+<text class="m" x="597.45" y="1421" fill="#1f2433">address</text>
+<text class="m" x="545.85" y="1439" fill="#7a8296">bool</text>
+<text class="m" x="597.45" y="1439" fill="#1f2433">is_active</text>
+</g>
+<g><rect x="1377" y="1389" width="216" height="196" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M1377,1419V1395a6,6 0 0 1 6,-6H1587a6,6 0 0 1 6,6V1419Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="1485" y="1409" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">AssetModel</text>
+<text class="m" x="1387" y="1432" fill="#7a8296">uuid</text>
+<text class="m" x="1445.2" y="1432" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="1569.4" y="1432" fill="#b45309" font-weight="700">PK</text>
+<rect x="1378" y="1437" width="214" height="18" fill="#f6f7fb"/>
+<text class="m" x="1387" y="1450" fill="#7a8296">uuid</text>
+<text class="m" x="1445.2" y="1450" fill="#1f2433">organization_id</text>
+<text class="m" x="1569.4" y="1450" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1387" y="1468" fill="#7a8296">uuid</text>
+<text class="m" x="1445.2" y="1468" fill="#1f2433">asset_type_id</text>
+<text class="m" x="1569.4" y="1468" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="1378" y="1473" width="214" height="18" fill="#f6f7fb"/>
+<text class="m" x="1387" y="1486" fill="#7a8296">uuid</text>
+<text class="m" x="1445.2" y="1486" fill="#1f2433">manufacturer_id</text>
+<text class="m" x="1569.4" y="1486" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1387" y="1504" fill="#7a8296">string</text>
+<text class="m" x="1445.2" y="1504" fill="#1f2433">name</text>
+<rect x="1378" y="1509" width="214" height="18" fill="#f6f7fb"/>
+<text class="m" x="1387" y="1522" fill="#7a8296">string</text>
+<text class="m" x="1445.2" y="1522" fill="#1f2433">model_number</text>
+<text class="m" x="1387" y="1540" fill="#7a8296">decimal</text>
+<text class="m" x="1445.2" y="1540" fill="#1f2433">default_unit_cost</text>
+<rect x="1378" y="1545" width="214" height="18" fill="#f6f7fb"/>
+<text class="m" x="1387" y="1558" fill="#7a8296">int</text>
+<text class="m" x="1445.2" y="1558" fill="#1f2433">eol_months</text>
+<text class="m" x="1387" y="1576" fill="#7a8296">json</text>
+<text class="m" x="1445.2" y="1576" fill="#1f2433">specs</text>
+</g>
+<g><rect x="3131.2000000000003" y="2950" width="439" height="160" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M3131.2000000000003,2980V2956a6,6 0 0 1 6,-6H3564.2000000000003a6,6 0 0 1 6,6V2980Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="3350.7000000000003" y="2970" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">DepreciationSchedule</text>
+<text class="m" x="3141.2000000000003" y="2993" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="2993" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3330.2000000000003" y="2993" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="2998" width="437" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="3011" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="3011" fill="#1f2433">asset_id</text>
+<text class="m" x="3330.2000000000003" y="3011" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3355.4" y="3011" fill="#7a8296" font-style="italic">1:1</text>
+<text class="m" x="3141.2000000000003" y="3029" fill="#7a8296">enum</text>
+<text class="m" x="3199.4" y="3029" fill="#1f2433">method</text>
+<text class="m" x="3355.4" y="3029" fill="#7a8296" font-style="italic">straight_line | declining | wdv</text>
+<rect x="3132.2000000000003" y="3034" width="437" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="3047" fill="#7a8296">decimal</text>
+<text class="m" x="3199.4" y="3047" fill="#1f2433">depreciable_base</text>
+<text class="m" x="3141.2000000000003" y="3065" fill="#7a8296">decimal</text>
+<text class="m" x="3199.4" y="3065" fill="#1f2433">salvage_value</text>
+<rect x="3132.2000000000003" y="3070" width="437" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="3083" fill="#7a8296">int</text>
+<text class="m" x="3199.4" y="3083" fill="#1f2433">useful_life_months</text>
+<text class="m" x="3141.2000000000003" y="3101" fill="#7a8296">date</text>
+<text class="m" x="3199.4" y="3101" fill="#1f2433">start_date</text>
+</g>
+<g><rect x="3912.2000000000003" y="2968" width="209" height="142" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M3912.2000000000003,2998V2974a6,6 0 0 1 6,-6H4115.200000000001a6,6 0 0 1 6,6V2998Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="4016.7000000000003" y="2988" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">DepreciationEntry</text>
+<text class="m" x="3922.2000000000003" y="3011" fill="#7a8296">uuid</text>
+<text class="m" x="3980.4" y="3011" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4098" y="3011" fill="#b45309" font-weight="700">PK</text>
+<rect x="3913.2000000000003" y="3016" width="207" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="3029" fill="#7a8296">uuid</text>
+<text class="m" x="3980.4" y="3029" fill="#1f2433">schedule_id</text>
+<text class="m" x="4098" y="3029" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3922.2000000000003" y="3047" fill="#7a8296">date</text>
+<text class="m" x="3980.4" y="3047" fill="#1f2433">period_end</text>
+<rect x="3913.2000000000003" y="3052" width="207" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="3065" fill="#7a8296">decimal</text>
+<text class="m" x="3980.4" y="3065" fill="#1f2433">amount</text>
+<text class="m" x="3922.2000000000003" y="3083" fill="#7a8296">decimal</text>
+<text class="m" x="3980.4" y="3083" fill="#1f2433">book_value_after</text>
+<rect x="3913.2000000000003" y="3088" width="207" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="3101" fill="#7a8296">bool</text>
+<text class="m" x="3980.4" y="3101" fill="#1f2433">is_posted</text>
+</g>
+<g><rect x="3131.2000000000003" y="1133" width="433" height="214" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M3131.2000000000003,1163V1139a6,6 0 0 1 6,-6H3558.2000000000003a6,6 0 0 1 6,6V1163Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="3347.7000000000003" y="1153" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Disposal</text>
+<text class="m" x="3141.2000000000003" y="1176" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="1176" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3303.8" y="1176" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="1181" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1194" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="1194" fill="#1f2433">asset_id</text>
+<text class="m" x="3303.8" y="1194" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3329" y="1194" fill="#7a8296" font-style="italic">1:1</text>
+<text class="m" x="3141.2000000000003" y="1212" fill="#7a8296">enum</text>
+<text class="m" x="3199.4" y="1212" fill="#1f2433">method</text>
+<text class="m" x="3329" y="1212" fill="#7a8296" font-style="italic">sold | scrapped | donated | lost |</text>
+<text class="m" x="3329" y="1230" fill="#7a8296" font-style="italic">returned</text>
+<rect x="3132.2000000000003" y="1235" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1248" fill="#7a8296">date</text>
+<text class="m" x="3199.4" y="1248" fill="#1f2433">disposed_on</text>
+<text class="m" x="3141.2000000000003" y="1266" fill="#7a8296">decimal</text>
+<text class="m" x="3199.4" y="1266" fill="#1f2433">proceeds</text>
+<rect x="3132.2000000000003" y="1271" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1284" fill="#7a8296">uuid</text>
+<text class="m" x="3199.4" y="1284" fill="#1f2433">buyer_id</text>
+<text class="m" x="3303.8" y="1284" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="1302" fill="#7a8296">decimal</text>
+<text class="m" x="3199.4" y="1302" fill="#1f2433">gain_loss</text>
+<rect x="3132.2000000000003" y="1307" width="431" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1320" fill="#7a8296">int</text>
+<text class="m" x="3199.4" y="1320" fill="#1f2433">approved_by_id</text>
+<text class="m" x="3303.8" y="1320" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="1338" fill="#7a8296">text</text>
+<text class="m" x="3199.4" y="1338" fill="#1f2433">notes</text>
+</g>
+<g><rect x="2185.4" y="110" width="452" height="196" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M2185.4,140V116a6,6 0 0 1 6,-6H2631.4a6,6 0 0 1 6,6V140Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="2411.4" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Contract</text>
+<text class="m" x="2195.4" y="153" fill="#7a8296">uuid</text>
+<text class="m" x="2253.6" y="153" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="2377.7999999999997" y="153" fill="#b45309" font-weight="700">PK</text>
+<rect x="2186.4" y="158" width="450" height="18" fill="#f6f7fb"/>
+<text class="m" x="2195.4" y="171" fill="#7a8296">uuid</text>
+<text class="m" x="2253.6" y="171" fill="#1f2433">organization_id</text>
+<text class="m" x="2377.7999999999997" y="171" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="2195.4" y="189" fill="#7a8296">uuid</text>
+<text class="m" x="2253.6" y="189" fill="#1f2433">vendor_id</text>
+<text class="m" x="2377.7999999999997" y="189" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="2186.4" y="194" width="450" height="18" fill="#f6f7fb"/>
+<text class="m" x="2195.4" y="207" fill="#7a8296">enum</text>
+<text class="m" x="2253.6" y="207" fill="#1f2433">type</text>
+<text class="m" x="2402.9999999999995" y="207" fill="#7a8296" font-style="italic">warranty | amc | lease | insurance</text>
+<text class="m" x="2195.4" y="225" fill="#7a8296">string</text>
+<text class="m" x="2253.6" y="225" fill="#1f2433">contract_number</text>
+<rect x="2186.4" y="230" width="450" height="18" fill="#f6f7fb"/>
+<text class="m" x="2195.4" y="243" fill="#7a8296">date</text>
+<text class="m" x="2253.6" y="243" fill="#1f2433">starts_on</text>
+<text class="m" x="2195.4" y="261" fill="#7a8296">date</text>
+<text class="m" x="2253.6" y="261" fill="#1f2433">ends_on</text>
+<rect x="2186.4" y="266" width="450" height="18" fill="#f6f7fb"/>
+<text class="m" x="2195.4" y="279" fill="#7a8296">decimal</text>
+<text class="m" x="2253.6" y="279" fill="#1f2433">cost</text>
+<text class="m" x="2195.4" y="297" fill="#7a8296">int</text>
+<text class="m" x="2253.6" y="297" fill="#1f2433">alert_days_before</text>
+</g>
+<g><rect x="3131.2000000000003" y="225" width="157" height="70" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M3131.2000000000003,255V231a6,6 0 0 1 6,-6H3282.2000000000003a6,6 0 0 1 6,6V255Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="3209.7000000000003" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">ContractAsset</text>
+<text class="m" x="3141.2000000000003" y="268" fill="#7a8296">uuid</text>
+<text class="m" x="3179.6000000000004" y="268" fill="#1f2433">contract_id</text>
+<text class="m" x="3264.2000000000003" y="268" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3132.2000000000003" y="273" width="155" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="286" fill="#7a8296">uuid</text>
+<text class="m" x="3179.6000000000004" y="286" fill="#1f2433">asset_id</text>
+<text class="m" x="3264.2000000000003" y="286" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="3131.2000000000003" y="1670" width="439" height="196" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M3131.2000000000003,1700V1676a6,6 0 0 1 6,-6H3564.2000000000003a6,6 0 0 1 6,6V1700Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="3350.7000000000003" y="1690" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Reservation</text>
+<text class="m" x="3141.2000000000003" y="1713" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="1713" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3317.0000000000005" y="1713" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="1718" width="437" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1731" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="1731" fill="#1f2433">asset_id</text>
+<text class="m" x="3317.0000000000005" y="1731" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="1749" fill="#7a8296">int</text>
+<text class="m" x="3206.0000000000005" y="1749" fill="#1f2433">reserved_for_id</text>
+<text class="m" x="3317.0000000000005" y="1749" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3132.2000000000003" y="1754" width="437" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1767" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="1767" fill="#1f2433">project_id</text>
+<text class="m" x="3317.0000000000005" y="1767" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="1785" fill="#7a8296">datetime</text>
+<text class="m" x="3206.0000000000005" y="1785" fill="#1f2433">starts_at</text>
+<rect x="3132.2000000000003" y="1790" width="437" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1803" fill="#7a8296">datetime</text>
+<text class="m" x="3206.0000000000005" y="1803" fill="#1f2433">ends_at</text>
+<text class="m" x="3141.2000000000003" y="1821" fill="#7a8296">decimal</text>
+<text class="m" x="3206.0000000000005" y="1821" fill="#1f2433">quantity</text>
+<rect x="3132.2000000000003" y="1826" width="437" height="36" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="1839" fill="#7a8296">enum</text>
+<text class="m" x="3206.0000000000005" y="1839" fill="#1f2433">status</text>
+<text class="m" x="3342.2000000000003" y="1839" fill="#7a8296" font-style="italic">pending | confirmed | cancelled |</text>
+<text class="m" x="3342.2000000000003" y="1857" fill="#7a8296" font-style="italic">fulfilled</text>
+</g>
+<g><rect x="3912.2000000000003" y="492" width="373" height="214" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M3912.2000000000003,522V498a6,6 0 0 1 6,-6H4279.200000000001a6,6 0 0 1 6,6V522Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="4098.700000000001" y="512" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">MaintenancePlan</text>
+<text class="m" x="3922.2000000000003" y="535" fill="#7a8296">uuid</text>
+<text class="m" x="3980.4" y="535" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4084.8" y="535" fill="#b45309" font-weight="700">PK</text>
+<rect x="3913.2000000000003" y="540" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="553" fill="#7a8296">uuid</text>
+<text class="m" x="3980.4" y="553" fill="#1f2433">asset_id</text>
+<text class="m" x="4084.8" y="553" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="4110" y="553" fill="#7a8296" font-style="italic">NULL = all assets of type</text>
+<text class="m" x="3922.2000000000003" y="571" fill="#7a8296">uuid</text>
+<text class="m" x="3980.4" y="571" fill="#1f2433">asset_type_id</text>
+<text class="m" x="4084.8" y="571" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3913.2000000000003" y="576" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="589" fill="#7a8296">string</text>
+<text class="m" x="3980.4" y="589" fill="#1f2433">name</text>
+<text class="m" x="3922.2000000000003" y="607" fill="#7a8296">enum</text>
+<text class="m" x="3980.4" y="607" fill="#1f2433">trigger</text>
+<text class="m" x="4110" y="607" fill="#7a8296" font-style="italic">time | meter</text>
+<rect x="3913.2000000000003" y="612" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="625" fill="#7a8296">int</text>
+<text class="m" x="3980.4" y="625" fill="#1f2433">interval_days</text>
+<text class="m" x="3922.2000000000003" y="643" fill="#7a8296">decimal</text>
+<text class="m" x="3980.4" y="643" fill="#1f2433">interval_meter</text>
+<rect x="3913.2000000000003" y="648" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="661" fill="#7a8296">uuid</text>
+<text class="m" x="3980.4" y="661" fill="#1f2433">meter_id</text>
+<text class="m" x="4084.8" y="661" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3922.2000000000003" y="679" fill="#7a8296">date</text>
+<text class="m" x="3980.4" y="679" fill="#1f2433">next_due</text>
+<rect x="3913.2000000000003" y="684" width="371" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="697" fill="#7a8296">bool</text>
+<text class="m" x="3980.4" y="697" fill="#1f2433">is_active</text>
+</g>
+<g><rect x="5374.000000000001" y="112" width="426" height="214" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M5374.000000000001,142V118a6,6 0 0 1 6,-6H5794.000000000001a6,6 0 0 1 6,6V142Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="5587.000000000001" y="132" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Attachment</text>
+<text class="m" x="5384.000000000001" y="155" fill="#7a8296">uuid</text>
+<text class="m" x="5435.600000000001" y="155" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="5540.000000000001" y="155" fill="#b45309" font-weight="700">PK</text>
+<rect x="5375.000000000001" y="160" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="173" fill="#7a8296">string</text>
+<text class="m" x="5435.600000000001" y="173" fill="#1f2433">owner_type</text>
+<text class="m" x="5565.200000000001" y="173" fill="#7a8296" font-style="italic">asset | maintenance_log | contract</text>
+<text class="m" x="5384.000000000001" y="191" fill="#7a8296">uuid</text>
+<text class="m" x="5435.600000000001" y="191" fill="#1f2433">owner_id</text>
+<rect x="5375.000000000001" y="196" width="424" height="36" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="209" fill="#7a8296">enum</text>
+<text class="m" x="5435.600000000001" y="209" fill="#1f2433">kind</text>
+<text class="m" x="5565.200000000001" y="209" fill="#7a8296" font-style="italic">photo | invoice | manual |</text>
+<text class="m" x="5565.200000000001" y="227" fill="#7a8296" font-style="italic">certificate | other</text>
+<text class="m" x="5384.000000000001" y="245" fill="#7a8296">binary</text>
+<text class="m" x="5435.600000000001" y="245" fill="#1f2433">data</text>
+<rect x="5375.000000000001" y="250" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="263" fill="#7a8296">string</text>
+<text class="m" x="5435.600000000001" y="263" fill="#1f2433">file_name</text>
+<text class="m" x="5384.000000000001" y="281" fill="#7a8296">string</text>
+<text class="m" x="5435.600000000001" y="281" fill="#1f2433">content_type</text>
+<rect x="5375.000000000001" y="286" width="424" height="18" fill="#f6f7fb"/>
+<text class="m" x="5384.000000000001" y="299" fill="#7a8296">int</text>
+<text class="m" x="5435.600000000001" y="299" fill="#1f2433">size</text>
+<text class="m" x="5384.000000000001" y="317" fill="#7a8296">int</text>
+<text class="m" x="5435.600000000001" y="317" fill="#1f2433">uploaded_by_id</text>
+<text class="m" x="5540.000000000001" y="317" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="3131.2000000000003" y="344" width="314" height="178" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M3131.2000000000003,374V350a6,6 0 0 1 6,-6H3439.2000000000003a6,6 0 0 1 6,6V374Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="3288.2000000000003" y="364" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">ActivityLog</text>
+<text class="m" x="3141.2000000000003" y="387" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="387" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3317.0000000000005" y="387" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="392" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="405" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="405" fill="#1f2433">organization_id</text>
+<text class="m" x="3317.0000000000005" y="405" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="423" fill="#7a8296">string</text>
+<text class="m" x="3206.0000000000005" y="423" fill="#1f2433">entity_type</text>
+<rect x="3132.2000000000003" y="428" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="441" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="441" fill="#1f2433">entity_id</text>
+<text class="m" x="3141.2000000000003" y="459" fill="#7a8296">string</text>
+<text class="m" x="3206.0000000000005" y="459" fill="#1f2433">action</text>
+<rect x="3132.2000000000003" y="464" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="477" fill="#7a8296">json</text>
+<text class="m" x="3206.0000000000005" y="477" fill="#1f2433">changes</text>
+<text class="m" x="3342.2000000000003" y="477" fill="#7a8296" font-style="italic">before / after</text>
+<text class="m" x="3141.2000000000003" y="495" fill="#7a8296">int</text>
+<text class="m" x="3206.0000000000005" y="495" fill="#1f2433">actor_id</text>
+<text class="m" x="3317.0000000000005" y="495" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3132.2000000000003" y="500" width="312" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="513" fill="#7a8296">datetime</text>
+<text class="m" x="3206.0000000000005" y="513" fill="#1f2433">created_at</text>
+<text class="m" x="3342.2000000000003" y="513" fill="#7a8296" font-style="italic">append-only</text>
+</g>
+<g><rect x="1455.6666666666667" y="2714" width="203" height="142" rx="6" fill="#fff" stroke="#E8622C" stroke-width="1.6"/>
+<path d="M1455.6666666666667,2744V2720a6,6 0 0 1 6,-6H1652.6666666666667a6,6 0 0 1 6,6V2744Z" fill="#FCE6DE" stroke="#E8622C" stroke-width="1.6"/>
+<text class="t" x="1557.1666666666667" y="2734" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Department</text>
+<text class="m" x="1465.6666666666667" y="2757" fill="#7a8296">uuid</text>
+<text class="m" x="1517.2666666666667" y="2757" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="1634.8666666666666" y="2757" fill="#b45309" font-weight="700">PK</text>
+<rect x="1456.6666666666667" y="2762" width="201" height="18" fill="#f6f7fb"/>
+<text class="m" x="1465.6666666666667" y="2775" fill="#7a8296">uuid</text>
+<text class="m" x="1517.2666666666667" y="2775" fill="#1f2433">organization_id</text>
+<text class="m" x="1634.8666666666666" y="2775" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1465.6666666666667" y="2793" fill="#7a8296">uuid</text>
+<text class="m" x="1517.2666666666667" y="2793" fill="#1f2433">parent_id</text>
+<text class="m" x="1634.8666666666666" y="2793" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="1456.6666666666667" y="2798" width="201" height="18" fill="#f6f7fb"/>
+<text class="m" x="1465.6666666666667" y="2811" fill="#7a8296">string</text>
+<text class="m" x="1517.2666666666667" y="2811" fill="#1f2433">name</text>
+<text class="m" x="1465.6666666666667" y="2829" fill="#7a8296">string</text>
+<text class="m" x="1517.2666666666667" y="2829" fill="#1f2433">cost_center_code</text>
+<rect x="1456.6666666666667" y="2834" width="201" height="18" fill="#f6f7fb"/>
+<text class="m" x="1465.6666666666667" y="2847" fill="#7a8296">int</text>
+<text class="m" x="1517.2666666666667" y="2847" fill="#1f2433">head_id</text>
+<text class="m" x="1634.8666666666666" y="2847" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="3205.866666666667" y="1426" width="327" height="124" rx="6" fill="#fff" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<path d="M3205.866666666667,1456V1432a6,6 0 0 1 6,-6H3526.866666666667a6,6 0 0 1 6,6V1456Z" fill="#DFF5EA" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text class="t" x="3369.366666666667" y="1446" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Meter</text>
+<text class="m" x="3215.866666666667" y="1469" fill="#7a8296">uuid</text>
+<text class="m" x="3280.666666666667" y="1469" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3371.866666666667" y="1469" fill="#b45309" font-weight="700">PK</text>
+<rect x="3206.866666666667" y="1474" width="325" height="18" fill="#f6f7fb"/>
+<text class="m" x="3215.866666666667" y="1487" fill="#7a8296">uuid</text>
+<text class="m" x="3280.666666666667" y="1487" fill="#1f2433">asset_id</text>
+<text class="m" x="3371.866666666667" y="1487" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3215.866666666667" y="1505" fill="#7a8296">enum</text>
+<text class="m" x="3280.666666666667" y="1505" fill="#1f2433">unit</text>
+<text class="m" x="3397.0666666666666" y="1505" fill="#7a8296" font-style="italic">hours | km | cycles</text>
+<rect x="3206.866666666667" y="1510" width="325" height="18" fill="#f6f7fb"/>
+<text class="m" x="3215.866666666667" y="1523" fill="#7a8296">decimal</text>
+<text class="m" x="3280.666666666667" y="1523" fill="#1f2433">last_reading</text>
+<text class="m" x="3215.866666666667" y="1541" fill="#7a8296">datetime</text>
+<text class="m" x="3280.666666666667" y="1541" fill="#1f2433">last_read_at</text>
+</g>
+<g><rect x="3912.2000000000003" y="1683" width="176" height="124" rx="6" fill="#fff" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<path d="M3912.2000000000003,1713V1689a6,6 0 0 1 6,-6H4082.2000000000003a6,6 0 0 1 6,6V1713Z" fill="#DFF5EA" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text class="t" x="4000.2000000000003" y="1703" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">MeterReading</text>
+<text class="m" x="3922.2000000000003" y="1726" fill="#7a8296">uuid</text>
+<text class="m" x="3987.0000000000005" y="1726" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="4065.0000000000005" y="1726" fill="#b45309" font-weight="700">PK</text>
+<rect x="3913.2000000000003" y="1731" width="174" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="1744" fill="#7a8296">uuid</text>
+<text class="m" x="3987.0000000000005" y="1744" fill="#1f2433">meter_id</text>
+<text class="m" x="4065.0000000000005" y="1744" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3922.2000000000003" y="1762" fill="#7a8296">decimal</text>
+<text class="m" x="3987.0000000000005" y="1762" fill="#1f2433">value</text>
+<rect x="3913.2000000000003" y="1767" width="174" height="18" fill="#f6f7fb"/>
+<text class="m" x="3922.2000000000003" y="1780" fill="#7a8296">datetime</text>
+<text class="m" x="3987.0000000000005" y="1780" fill="#1f2433">read_at</text>
+<text class="m" x="3922.2000000000003" y="1798" fill="#7a8296">int</text>
+<text class="m" x="3987.0000000000005" y="1798" fill="#1f2433">read_by_id</text>
+<text class="m" x="4065.0000000000005" y="1798" fill="#1F6FD1" font-weight="700">FK</text>
+</g>
+<g><rect x="1381.3333333333333" y="571" width="203" height="178" rx="6" fill="#fff" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<path d="M1381.3333333333333,601V577a6,6 0 0 1 6,-6H1578.3333333333333a6,6 0 0 1 6,6V601Z" fill="#DFF5EA" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text class="t" x="1482.8333333333333" y="591" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">Licence</text>
+<text class="m" x="1391.3333333333333" y="614" fill="#7a8296">uuid</text>
+<text class="m" x="1449.5333333333333" y="614" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="1560.5333333333333" y="614" fill="#b45309" font-weight="700">PK</text>
+<rect x="1382.3333333333333" y="619" width="201" height="18" fill="#f6f7fb"/>
+<text class="m" x="1391.3333333333333" y="632" fill="#7a8296">uuid</text>
+<text class="m" x="1449.5333333333333" y="632" fill="#1f2433">organization_id</text>
+<text class="m" x="1560.5333333333333" y="632" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1391.3333333333333" y="650" fill="#7a8296">uuid</text>
+<text class="m" x="1449.5333333333333" y="650" fill="#1f2433">asset_type_id</text>
+<text class="m" x="1560.5333333333333" y="650" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="1382.3333333333333" y="655" width="201" height="18" fill="#f6f7fb"/>
+<text class="m" x="1391.3333333333333" y="668" fill="#7a8296">uuid</text>
+<text class="m" x="1449.5333333333333" y="668" fill="#1f2433">vendor_id</text>
+<text class="m" x="1560.5333333333333" y="668" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="1391.3333333333333" y="686" fill="#7a8296">string</text>
+<text class="m" x="1449.5333333333333" y="686" fill="#1f2433">product_key</text>
+<rect x="1382.3333333333333" y="691" width="201" height="18" fill="#f6f7fb"/>
+<text class="m" x="1391.3333333333333" y="704" fill="#7a8296">int</text>
+<text class="m" x="1449.5333333333333" y="704" fill="#1f2433">seats</text>
+<text class="m" x="1391.3333333333333" y="722" fill="#7a8296">date</text>
+<text class="m" x="1449.5333333333333" y="722" fill="#1f2433">expires_on</text>
+<rect x="1382.3333333333333" y="727" width="201" height="18" fill="#f6f7fb"/>
+<text class="m" x="1391.3333333333333" y="740" fill="#7a8296">decimal</text>
+<text class="m" x="1449.5333333333333" y="740" fill="#1f2433">cost</text>
+</g>
+<g><rect x="3131.2000000000003" y="571" width="223" height="142" rx="6" fill="#fff" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<path d="M3131.2000000000003,601V577a6,6 0 0 1 6,-6H3348.2000000000003a6,6 0 0 1 6,6V601Z" fill="#DFF5EA" stroke="#1F9D5C" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text class="t" x="3242.7000000000003" y="591" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2433">LicenceSeat</text>
+<text class="m" x="3141.2000000000003" y="614" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="614" fill="#1f2433" font-weight="700">id</text>
+<text class="m" x="3330.2000000000003" y="614" fill="#b45309" font-weight="700">PK</text>
+<rect x="3132.2000000000003" y="619" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="632" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="632" fill="#1f2433">licence_id</text>
+<text class="m" x="3330.2000000000003" y="632" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="650" fill="#7a8296">int</text>
+<text class="m" x="3206.0000000000005" y="650" fill="#1f2433">assigned_user_id</text>
+<text class="m" x="3330.2000000000003" y="650" fill="#1F6FD1" font-weight="700">FK</text>
+<rect x="3132.2000000000003" y="655" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="668" fill="#7a8296">uuid</text>
+<text class="m" x="3206.0000000000005" y="668" fill="#1f2433">assigned_asset_id</text>
+<text class="m" x="3330.2000000000003" y="668" fill="#1F6FD1" font-weight="700">FK</text>
+<text class="m" x="3141.2000000000003" y="686" fill="#7a8296">datetime</text>
+<text class="m" x="3206.0000000000005" y="686" fill="#1f2433">assigned_at</text>
+<rect x="3132.2000000000003" y="691" width="221" height="18" fill="#f6f7fb"/>
+<text class="m" x="3141.2000000000003" y="704" fill="#7a8296">datetime</text>
+<text class="m" x="3206.0000000000005" y="704" fill="#1f2433">released_at</text>
+</g>
+</svg>
